@@ -1,0 +1,51 @@
+$dark: #333333
+$middle: #C4C4C4
+$light: #DFDFDF
+
+.title-1, h1
+  font-weight: 600
+  font-size: 36px
+.title-2, h2
+  font-weight: 600
+  font-size: 24px
+.title-2, h2
+  font-weight: 400
+  font-size: 18px
+.btn
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: .2s
+  font-weight: 400
+  font-size: 18px
+  width: 270px
+  height: 40px
+  border-radius: 0px
+  // border: 1px solid $light
+  background: $light
+  color: $dark
+  &:hover,
+  &:active
+    // background: 
+    transition: .2s
+.container
+  max-width: 1170px + (2 * 15px)
+  padding: 0 15px
+  margin: 0 auto
+.clearfix::after
+  content: ''
+  display: block
+  clear: both
+.scrollOff
+  overflow-y: hidden
+.bg
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+.delete-btn-style
+  background: transparent
+  border: none
+  border-radius: 0
+.pt
+  padding-top: 80px

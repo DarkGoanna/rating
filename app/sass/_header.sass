@@ -1,0 +1,348 @@
+.header
+  height: 60px
+  background: #fff
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  border-bottom: 1px solid $middle
+  & .container
+    height: 100%
+    display: grid
+    grid-template-columns: max-content 1fr 70px 18px
+    align-items: center
+    grid-column-gap: 10px
+  &__logo
+    & a
+      display: block
+      width: 100%
+      height: 100%
+      display: flex
+      align-items: center
+  &__menu
+    display: flex
+    align-items: center
+    justify-content: center
+    & .menu
+      display: flex
+      align-items: center
+      height: 100%
+      & > li
+        height: 100%
+      & li
+        list-style: none
+        padding: 0 10px
+        transition: .2s
+        &.has-arrow
+          padding-right: 23px
+        & .arrow
+          right: 10px
+        &:hover
+          background: $light
+          transition: .2s
+      & a
+        width: 100%
+        height: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+  &__burger
+    display: none
+  &__logo,
+  &__menu,
+  &__language,
+  &__search
+    height: 100%
+  &__language
+    & .language
+      height: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+  &__search
+    & .search
+      height: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+
+// burger
+.burger
+  width: 20px
+  height: 13px
+  display: flex
+  flex-direction: column
+  position: relative
+  cursor: pointer
+  & span
+    position: absolute
+    left: 0
+    width: 100%
+    height: 2px
+    background: $dark
+    transition: .2s
+    &:nth-child(1)
+      top: 0
+    &:nth-child(2)
+      top: 50%
+      transform: translateY(-50%)
+    &:nth-child(3)
+      bottom: 0
+  &.open
+    & span
+      &:nth-child(1)
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%) rotate(45deg)
+        transition: .2s
+      &:nth-child(2)
+        opacity: 0
+        visibility: hidden
+      &:nth-child(3)
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%) rotate(-45deg)
+        transition: .2s
+// language
+.language
+  position: relative
+  &__btn
+  &__list
+    position: absolute
+    top: 100%
+    left: 50%
+    transform: translateY(20px) translateX(-50%)
+    opacity: 0
+    visibility: hidden
+    transition: .2s
+    background: #fff
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    & li
+      list-style: none
+      padding: 0 12px
+      min-height: 40px
+      display: flex
+      align-items: center
+      cursor: pointer
+      transition: .2s
+      &:not(:last-child)
+        border-bottom: 1px solid $middle
+      &:hover
+        background: $light
+        transition: .2s
+  &:hover
+    & .language__list
+      transform: translateY(0) translateX(-50%)
+      opacity: 1
+      visibility: visible
+      transition: .2s
+      border-top: 1px solid $middle
+  &__current
+    &.open
+      & + .language__list
+        transform: translateY(0) translateX(-50%)
+        opacity: 1
+        visibility: visible
+        transition: .2s
+        border-top: 1px solid $middle
+
+//search
+.search
+  position: relative
+  &__btn
+    cursor: pointer
+    &:hover
+      & + .search__input-wrapper
+        transform: translate(0)
+        opacity: 1
+        visibility: visible
+        transition: .2s
+  &__input-wrapper
+    position: absolute
+    top: 100%
+    right: 0
+    transform: translateY(20px)
+    opacity: 0
+    visibility: hidden
+    transition: .2s
+    background: #fff
+    border-top: 1px solid $middle
+    &::before
+      content: url(../img/search.svg)
+      position: absolute
+      top: 50%
+      left: 25px
+      transform: translateY(-50%)
+    & input
+      display: block
+      padding: 11px
+      padding-left: 60px
+      height: 40px
+      width: 300px
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+      &:placeholder
+        color: $dark
+        font-size: inherit
+        font-weight: inherit
+        font-family: inherit
+  &.open
+    & .search__input-wrapper
+      transform: translate(0)
+      opacity: 1
+      visibility: visible
+      transition: .2s
+      border-top: 1px solid $middle
+
+// arrow
+.has-arrow
+  position: relative
+  padding-right: 13px
+.arrow
+  position: absolute
+  right: 2px
+  top: 50%
+  transform: translateY(-50%)
+  width: 8px
+  height: 8px
+  cursor: pointer
+  &::before
+    content: ''
+    width: 5px
+    height: 5px
+    border-right: 1px solid $dark
+    border-bottom: 1px solid $dark
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -70%) rotate(45deg)
+
+@media screen and ( min-width: 1001px )
+  .header
+    &__menu
+      & .menu
+        & .has-children
+          position: relative
+          &:hover,
+          &.open
+            background: $light
+            & .menu__submenu
+              opacity: 1
+              visibility: visible
+              transform: translateY(0)
+              transition: .2s
+        &__submenu
+          position: absolute
+          top: 100%
+          left: 0
+          opacity: 0
+          visibility: hidden
+          transform: translateY(20px)
+          transition: .2s
+          background: #fff
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+          border-top: 1px solid $middle
+          width: max-content
+          & li
+            min-height: 40px
+            display: flex
+            align-items: center
+            &:not(:last-child)
+              border-bottom: 1px solid $middle
+          & a
+            width: 100%
+            display: block
+        &__comeback
+          display: none
+
+@media screen and ( max-width: 1000px )
+  .header
+    & .container
+      grid-template-columns: 1fr repeat(3, max-content)
+      grid-column-gap: 30px
+      grid-template-areas: 'logo language search burger'
+    &__menu
+      position: fixed
+      top: 60px
+      right: 0
+      width: 100%
+      max-width: 320px
+      height: calc( 100vh - 60px )
+      background: #fff
+      display: block
+      overflow: hidden
+      transition: .2s
+      transform: translateX(100%)
+      &.open
+        transform: translateX(0)
+        transition: .2s
+      & .menu
+        flex-direction: column
+        height: auto
+        transform: translateX(0)
+        transition: .2s
+        & li
+          width: 100%
+          min-height: 40px
+          display: flex
+          align-items: center
+          border-bottom: 1px solid $middle
+        & a
+          width: max-content
+          display: inline-block
+        &__btn
+          &::before
+            transform: translate(-50%, -70%) rotate(315deg)
+        & .has-arrow
+          padding-right: 40px
+        & .arrow
+          width: 30px
+          height: 100%
+        &__submenu
+          position: absolute
+          left: 100%
+          top: 0
+          width: 100%
+        &__comeback
+          font-family: inherit
+          font-size: inherit
+          font-weight: inherit
+          line-height: inherit
+          color: inherit
+          cursor: pointer
+          min-height: 40px
+          width: 100%
+          padding: 0 10px
+          display: flex
+          align-items: center
+          border-bottom: 1px solid $middle
+          transition: .2s
+          &:hover
+            background: $light
+            transition: .2s
+        &.show-submenu
+          transform: translateX(-100%)
+          transition: .2s
+    &__burger
+      display: flex
+      grid-area: burger
+    &__logo
+      grid-area: logo
+    &__language
+      grid-area: language
+    &__search
+      grid-area: search
+@media screen and ( max-width: 580px )
+  .header
+    & .container
+      grid-column-gap: 20px
+    &__logo
+      max-width: 150px
+    &__search
+      & .search
+        &__input-wrapper
+          position: fixed
+          top: 60px
+          left: 0
+          right: 0
+          & input
+            width: 100%
