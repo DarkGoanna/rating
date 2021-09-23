@@ -1,0 +1,37 @@
+.last-news
+  &__inner
+    display: grid
+    grid-row-gap: 25px
+  &__card
+    & .content
+      padding: 0
+      display: grid
+      grid-template-columns: 70px 1fr
+      grid-column-gap: 12px
+      &__date
+        color: $middle
+        margin-bottom: 8px
+@media screen and ( max-width: 1000px )
+  .last-news
+    &__inner
+      grid-template-columns: repeat(3, 1fr)
+      grid-gap: 20px
+    &__card
+      &:nth-last-child(1),
+      &:nth-last-child(2)
+        display: none
+@media screen and ( max-width: 768px )
+  .last-news
+    &__inner
+      grid-template-columns: repeat(2, 1fr)
+      grid-gap: 20px
+    &__card
+      &:nth-last-child(2)
+        display: grid
+@media screen and ( max-width: 580px )
+  .last-news
+    &__inner
+      grid-template-columns: 100%
+    &__card
+      &:nth-last-child(1)
+        display: grid

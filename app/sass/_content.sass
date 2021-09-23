@@ -1,0 +1,39 @@
+.content
+  width: 100%
+  height: 100%
+  padding: 20px
+  position: relative
+  &__label
+    position: absolute
+    top: 20px
+    left: 20px
+    background: $dark
+    color: #fff
+    padding: 5px 8px
+    z-index: 1
+  &__image
+    position: relative
+    display: block
+    z-index: 1
+    background: $light
+    & img,
+    & source
+      display: block
+      width: 100%
+      height: 100%
+      object-fit: cover
+      pointer-events: none
+  &__description
+    position: relative
+    z-index: 1
+  &__date
+    margin-bottom: 12px
+  &__subtitle
+    &::-webkit-scrollbar
+      width: 4px
+      background: transparent
+    &::-webkit-scrollbar-track
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0)
+
+    &::-webkit-scrollbar-thumb
+      border-radius: 8px

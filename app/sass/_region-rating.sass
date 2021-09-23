@@ -1,0 +1,200 @@
+.region-rating
+  &__inner
+    display: grid
+    grid-template-columns: 1fr max-content
+    grid-template-areas: 'title select''content content'
+    column-gap: 10px
+  &__title
+    grid-area: title
+  &__select
+    grid-area: select
+    & .default-select
+      display: none
+      min-width: 100px
+      border-radius: 0
+      background: $dark
+      width: max-content
+      height: 40px
+      padding: 0 30px 0 8px
+      align-items: center
+      justify-content: center
+      color: $light
+      font-size: 16px
+    & .custom-select
+      position: relative
+      min-width: 150px
+      &__list
+        opacity: 0
+        visibility: hidden
+        transform: translateY(20px)
+        position: absolute
+        top: 100%
+        right: 0
+        width: max-content
+        z-index: 3
+        min-width: 150px
+        border: 1px solid $middle
+        max-height: 150px
+        overflow-y: scroll
+        background: #fff
+        &::-webkit-scrollbar
+          width: 3px
+          background: #fff
+        &::-webkit-scrollbar-track
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+        &::-webkit-scrollbar-thumb
+          background: $dark
+          border-radius: 8px
+        & li
+          background: #fff
+          list-style: none
+          padding: 0 12px
+          min-height: 30px
+          display: flex
+          align-items: center
+          cursor: pointer
+          transition: .2s
+          &:not(:last-child)
+            border-bottom: 1px solid $middle
+          &:hover
+            background: $light
+            transition: .2s
+      &__btn
+        &.arrow
+          width: 100%
+          height: 100%
+          top: 0
+          left: 0
+          transform: translate(0)
+          &::before
+            left: auto
+            right: 15px
+            border-color: $light
+      &__output
+        min-width: 150px
+        background: $dark
+        width: max-content
+        height: 40px
+        padding: 0 30px 0 8px
+        display: flex
+        align-items: center
+        color: $light
+        &.open
+          & + .custom-select__list
+            opacity: 1
+            visibility: visible
+            transform: translateY(0)
+            transition: .2s
+  &__content
+    grid-area: content
+    & .region-content
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-column-gap: 30px
+      &__about
+        & .content
+          padding: 0
+          &__image
+            z-index: 0
+            margin-bottom: 25px
+            & img,
+            & source
+              height: 300px
+          &__date
+            margin-bottom: 8px
+          &__title
+            margin-bottom: 8px
+            font-size: 18px
+            font-weight: 600
+          &__subtitle
+            margin-bottom: 8px
+      & .region-table
+        &__head,
+        &__list li
+          display: grid
+          grid-template-columns: 70px 1fr 100px
+          grid-column-gap: 10px
+          align-items: center
+        &__head
+          justify-items: center
+          border-bottom: 1px solid $light
+        &__th
+          padding: 4px 0
+        &__list
+          & li
+            padding: 20px 0 12px
+            border-bottom: 1px solid $light
+            list-style: none
+        &__position
+          display: flex
+          justify-content: center
+        &__person
+          display: grid
+          grid-template-columns: 90px 1fr
+          align-items: center
+          grid-column-gap: 12px
+        &__photo
+          height: 70px
+          display: block
+          background: $light
+          & img,
+          & source
+            display: block
+            width: 100%
+            height: 100%
+            object-fit: cover
+            pointer-events: none
+        &__name
+          font-weight: 600
+          margin-bottom: 8px
+@media screen and ( max-width: 1200px )
+  .region-rating
+    &__content
+      & .region-content
+        & .region-table
+          &__head,
+          &__list li
+            display: grid
+            grid-template-columns: 50px 1fr 100px
+@media screen and ( max-width: 1000px )
+  .region-rating
+    &__content
+      & .region-content
+        grid-template-columns: .4fr .6fr
+
+@media screen and ( max-width: 800px )
+  .region-rating
+    &__content
+      & .region-content
+        grid-template-columns: 100%
+        grid-row-gap: 30px
+@media screen and ( max-width: 480px )
+  .region-rating
+    &__content
+      & .region-content
+        & .region-table
+          &__head,
+          &__list li
+            grid-template-columns: 40px 1fr
+          &__th:nth-child(3),
+          &__label
+            display: none
+.ios
+  .region-rating
+    &__select
+      position: relative
+      &::before
+        content: ''
+        display: block
+        width: 5px
+        height: 5px
+        border-right: 1px solid $light
+        border-bottom: 1px solid $light
+        position: absolute
+        top: 35%
+        right: 15px
+        transform: rotate(45deg) translateY(-50%)
+      & .default-select
+        display: flex
+      & .custom-select
+        display: none

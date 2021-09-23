@@ -1,0 +1,176 @@
+.news
+  &__inner
+    display: grid
+    grid-template-columns: 1fr max-content
+    grid-template-areas: 'title btn''slider slider'
+    column-gap: 10px
+  &__btn
+    grid-area: btn
+    max-width: max-content
+    height: 24px
+    display: flex
+    align-items: center
+    padding-left: 25px
+    padding-right: calc( 25px + 24px )
+    position: relative
+    cursor: pointer
+    border-radius: 0
+    border: none
+    background: $dark
+    color: $light
+    &::before,
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      pointer-events: none
+      transition: .2s
+    &::before
+      background: $light
+      width: 24px
+      height: 24px
+      top: 0
+      right: 0
+      transform: translateX(5px)
+      opacity: 0
+      visibility: hidden
+    &::after
+      border-right: 2px solid $light
+      border-bottom: 2px solid $light
+      width: 6px
+      height: 6px
+      top: 50%
+      right: 12px
+      transform: translate(30%, -50%) rotate(-45deg)
+    &:hover
+      &::before
+        transform: translateX(0)
+        opacity: 1
+        visibility: visible
+        transition: .2s
+      &::after
+        border-color: $dark
+        transition: .2s
+  &__title
+    grid-area: title
+  &__arrows
+    grid-area: arrows
+    position: relative
+    display: none
+  &__prev
+    left: 0
+    margin-top: 0
+    transform: translateY(-50%)
+  &__next
+    right: 0
+    margin-top: 0
+    transform: translateY(-50%)
+  &__slider
+    width: 100%
+    grid-area: slider
+    & .swiper-wrapper
+      display: grid
+      grid-template-columns: repeat(3, 1fr)
+      grid-column-gap: 85px
+  &__card
+    position: relative
+    width: 100%
+    margin: auto
+    & .content
+      display: flex
+      flex-direction: column
+      padding: 0
+      &__image-wrapper
+        position: relative
+        margin-bottom: 25px
+        &::before
+          content: ''
+          display: block
+          width: 100%
+          height: 100%
+          position: absolute
+          top: 0
+          left: 0
+          z-index: 1
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0) 24.83%, #000000 100%)
+      &__btn
+        position: absolute
+        right: 20px
+        bottom: 20px
+        display: block
+        width: 42px
+        height: 42px
+        border: 1px solid #fff
+        transition: .2s
+        z-index: 2
+        &::before
+          content: url(../img/arrow.svg)
+          position: absolute
+          top: 50%
+          left: -8px
+          transform: translateY(-50%)
+          transition: .2s
+        &:hover
+          border-color: transparent
+          transition: .2s
+          transform: translateX(-10px)
+          &::before
+            filter: drop-shadow(-4px 0px 3px #fff)
+            transform: translateY(-50%) translateX(20px)
+      &__image
+        display: block
+        width: 100%
+        min-height: 250px
+        position: relative
+        z-index: 0
+        & img,
+        & source
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+          height: 100%
+          object-fit: cover
+          pointer-events: none
+      &__title
+        margin-bottom: 8px
+      &__date
+        margin-bottom: 8px
+      &__text
+        margin-bottom: 8px
+
+@media screen and ( max-width: 1200px )
+  .news
+    &__slider
+      & .swiper-wrapper
+        grid-column-gap: 60px
+@media screen and ( max-width: 1000px )
+  .news
+    &__slider
+      & .swiper-wrapper
+        grid-column-gap: 30px
+@media screen and ( max-width: 768px )
+  .news
+    &__slider
+      & .swiper-wrapper
+        grid-template-columns: 100%
+        grid-row-gap: 30px
+@media screen and ( max-width: 580px )
+  .news
+    &__inner
+      grid-template-columns: 1fr max-content 60px
+      grid-template-areas: 'title btn arrows''slider slider slider'
+      align-items: center
+    &__arrows
+      display: block
+    &__slider
+      & .swiper-wrapper
+        display: flex
+        grid-gap: 0
+@media screen and ( max-width: 400px )
+  .news
+    &__title
+      display: none
+    &__inner
+      grid-template-columns: 1fr 60px
+      grid-template-areas: 'btn arrows''slider slider'

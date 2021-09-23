@@ -2,15 +2,17 @@ $dark: #333333
 $middle: #C4C4C4
 $light: #DFDFDF
 
-.title-1, h1
+.t1, h1
   font-weight: 600
   font-size: 36px
-.title-2, h2
+.t2, h2
   font-weight: 600
   font-size: 24px
-.title-2, h2
+.t3, h2
   font-weight: 400
   font-size: 18px
+.small
+  font-size: 14px
 .btn
   cursor: pointer
   display: flex
@@ -22,13 +24,20 @@ $light: #DFDFDF
   width: 270px
   height: 40px
   border-radius: 0px
-  // border: 1px solid $light
   background: $light
   color: $dark
   &:hover,
   &:active
-    // background: 
+    background: $dark
+    color: $light
     transition: .2s
+  &--dark
+    background: $dark
+    color: $light
+    &:hover,
+    &:active
+      background: $light
+      color: $dark
 .container
   max-width: 1170px + (2 * 15px)
   padding: 0 15px
@@ -49,3 +58,29 @@ $light: #DFDFDF
   border-radius: 0
 .pt
   padding-top: 80px
+
+.decor-line
+  position: relative
+  padding-top: 30px
+  margin-top: 12px
+  &::before
+    content: ''
+    display: block
+    width: 100%
+    height: 1px
+    position: absolute
+    top: 0
+    left: 0
+    background: $middle
+  &::after
+    content: ''
+    display: block
+    width: 140px
+    height: 1px
+    position: absolute
+    top: 0
+    left: 0
+    background: $dark
+@media screen and ( max-width: 580px )
+  .t1, h1
+    font-size: 32px

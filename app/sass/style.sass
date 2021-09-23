@@ -15,6 +15,7 @@
   padding: 0
   outline: none
   line-height: 1.2
+  -webkit-appearance: none
 html
   overflow-x: hidden
 body
@@ -40,5 +41,33 @@ input, textarea
   outline: none
   font-family: inherit, sans-serif
 
+.swiper-button-next, .swiper-button-prev
+  width: 24px
+  height: 24px
+  background: $dark
+  &::after
+    content: ''
+    width: 5px
+    height: 5px
+    border-right: 2px solid #fff
+    border-bottom: 2px solid #fff
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-75%, -50%) rotate(-45deg)
+.swiper-button-prev
+  &::after
+    transform: translate(-25%, -50%) rotate(135deg)
+
 @import 'header'
+@import 'banner'
+@import 'active-ratings'
+@import 'content'
+@import 'updates'
+@import 'last-rating'
+@import 'last-news'
 @import 'seo'
+@import 'join'
+@import 'experts'
+@import 'news'
+@import 'region-rating'

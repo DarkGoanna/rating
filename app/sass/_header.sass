@@ -5,6 +5,7 @@
   top: 0
   left: 0
   width: 100%
+  z-index: 999
   border-bottom: 1px solid $middle
   & .container
     height: 100%
@@ -13,6 +14,10 @@
     align-items: center
     grid-column-gap: 10px
   &__logo
+    &--desctop
+      display: block
+    &--mobile
+      display: none
     & a
       display: block
       width: 100%
@@ -78,7 +83,7 @@
     position: absolute
     left: 0
     width: 100%
-    height: 2px
+    height: 1px
     background: $dark
     transition: .2s
     &:nth-child(1)
@@ -151,12 +156,6 @@
   position: relative
   &__btn
     cursor: pointer
-    &:hover
-      & + .search__input-wrapper
-        transform: translate(0)
-        opacity: 1
-        visibility: visible
-        transition: .2s
   &__input-wrapper
     position: absolute
     top: 100%
@@ -168,11 +167,17 @@
     background: #fff
     border-top: 1px solid $middle
     &::before
-      content: url(../img/search.svg)
+      content: ''
+      background: url(../img/search.svg)
+      background-position: center
+      background-repeat: no-repeat
+      background-size: contain
       position: absolute
       top: 50%
       left: 25px
       transform: translateY(-50%)
+      width: 20px
+      height: 20px
     & input
       display: block
       padding: 11px
@@ -191,7 +196,6 @@
       opacity: 1
       visibility: visible
       transition: .2s
-      border-top: 1px solid $middle
 
 // arrow
 .has-arrow
@@ -253,12 +257,19 @@
             display: block
         &__comeback
           display: none
-
+  .search
+    &__btn
+      &:hover
+        & + .search__input-wrapper
+          transform: translate(0)
+          opacity: 1
+          visibility: visible
+          transition: .2s
 @media screen and ( max-width: 1000px )
   .header
     & .container
       grid-template-columns: 1fr repeat(3, max-content)
-      grid-column-gap: 30px
+      grid-column-gap: 20px
       grid-template-areas: 'logo language search burger'
     &__menu
       position: fixed
@@ -275,6 +286,7 @@
       &.open
         transform: translateX(0)
         transition: .2s
+        border-left: 1px solid $middle
       & .menu
         flex-direction: column
         height: auto
@@ -325,14 +337,27 @@
     &__burger
       display: flex
       grid-area: burger
+      & .burger
+        width: 30px
+        height: 20px
     &__logo
       grid-area: logo
     &__language
       grid-area: language
     &__search
       grid-area: search
+      & .search
+        &__input-wrapper
+          border-top: none
+        &__btn
+          width: 25px
+          height: 25px
+          & svg
+            width: 100%
+            height: 100%
 @media screen and ( max-width: 580px )
   .header
+    font-size: 20px
     & .container
       grid-column-gap: 20px
     &__logo
@@ -346,3 +371,10 @@
           right: 0
           & input
             width: 100%
+@media screen and ( max-width: 400px )
+  .header
+    &__logo
+      &--desctop
+        display: none
+      &--mobile
+        display: block
