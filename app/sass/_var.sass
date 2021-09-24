@@ -8,7 +8,7 @@ $light: #DFDFDF
 .t2, h2
   font-weight: 600
   font-size: 24px
-.t3, h2
+.t3, h3
   font-weight: 400
   font-size: 18px
 .small
@@ -25,18 +25,22 @@ $light: #DFDFDF
   height: 40px
   border-radius: 0px
   background: $light
+  border: 1px solid $light
   color: $dark
   &:hover,
   &:active
     background: $dark
     color: $light
+    border-color: $light
     transition: .2s
   &--dark
     background: $dark
+    border-color: $dark
     color: $light
     &:hover,
     &:active
       background: $light
+      border-color: $dark
       color: $dark
 .container
   max-width: 1170px + (2 * 15px)

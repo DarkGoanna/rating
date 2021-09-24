@@ -127,7 +127,7 @@ function languageSwitcher() {
 const activeRatings = document.querySelector('.active-ratings__slider');
 if (activeRatings) {
     new Swiper(activeRatings, {
-        slidesPerView: 4,
+        slidesPerView: 2,
         spaceBetween: 80,
         breakpoints: {
             0: {
@@ -139,11 +139,9 @@ if (activeRatings) {
                 spaceBetween: 20,
             },
             768: {
-                slidesPerView: 3,
                 spaceBetween: 30,
             },
             1000: {
-                slidesPerView: 4,
                 spaceBetween: 40,
             },
             1100: {
@@ -210,12 +208,12 @@ if (seo) {
     if (e.scrollHeight > minHeight) {
         e.parentElement.insertAdjacentHTML("beforeend", '<button type="button" class="seo__btn btn"></button>');
         const t = document.querySelector(".seo__btn");
-        const defaultHeight = document.querySelector(".seo__text").scrollHeight;
 
         e.classList.add("less");
         t.textContent = more;
 
         t.addEventListener("click", () => {
+            const defaultHeight = document.querySelector(".seo__text").scrollHeight;
             e.classList.toggle("less");
             if (e.classList.contains('less')) {
                 t.textContent = more;
@@ -228,7 +226,7 @@ if (seo) {
     }
 }
 
-// active-ratings
+// experts
 const experts = document.querySelector('.experts__slider');
 if (experts) {
     new Swiper(experts, {
@@ -269,14 +267,69 @@ function initSelect() {
         const otput = select.querySelector('.custom-select__value');
         select.addEventListener('click', event => {
             const target = event.target;
-            if (target.hasAttribute('data-value')) {
-                const id = target.getAttribute('data-value');
+            if (target.hasAttribute('data-region')) {
+                const region = target.getAttribute('data-region');
+                const sort = target.getAttribute('data-sort');
+                const id = target.closest('[data-category-id]').getAttribute('data-category-id');
                 const value = target.textContent;
                 otput.textContent = value;
                 otput.parentElement.classList.remove('open');
+                getRating(id, 4, 'people', region);
             }
         })
     })
+}
+
+// get rating
+async function getRating(id, perPage, sort, region) {
+    let domain = 'https://new.eliteukrainerating.com/';
+    let url = `${domain}ajax/get_rating/${id}/?per_page=${perPage}&sort=${sort}&region=${region}`;
+
+    let respo =
+
+        // const rating = await fetch(url);
+        // const response = await JSON.parse(rating);
+        console.log(url);
+}
+
+// partners
+const partners = document.querySelector('.partners__slider');
+if (partners) {
+    new Swiper(partners, {
+        slidesPerView: 6,
+        spaceBetween: 40,
+        loop: true,
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+                spaceBetween: 0,
+            },
+            400: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+            },
+            580: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+            },
+            1000: {
+                slidesPerView: 5,
+                spaceBetween: 30,
+            },
+            1200: {
+                slidesPerView: 6,
+                spaceBetween: 40,
+            },
+        },
+        navigation: {
+            prevEl: ".partners__prev",
+            nextEl: ".partners__next",
+        },
+    });
 }
 
 // при загрузке

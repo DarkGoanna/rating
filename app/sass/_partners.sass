@@ -1,0 +1,35 @@
+.partners
+  &__inner
+    display: grid
+    grid-template-columns: 1fr 60px
+    grid-template-areas: 'title arrows''slider slider'
+    column-gap: 10px
+  &__title
+    grid-area: title
+  &__arrows
+    grid-area: arrows
+    position: relative
+  &__prev
+    left: 0
+    margin-top: 0
+    transform: translateY(-50%)
+  &__next
+    right: 0
+    margin-top: 0
+    transform: translateY(-50%)
+  &__slider
+    width: 100%
+    grid-area: slider
+  &__card
+    position: relative
+    max-width: 162px
+    width: 100%
+    margin: auto
+    height: 125px
+    display: flex
+    align-items: center
+    justify-content: center
+    background: $light
+  &__image
+    display: block
+    object-fit: contain
