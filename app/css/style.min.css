@@ -1392,11 +1392,11 @@ textarea {
 .region-rating__inner {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 10px -webkit-max-content;
-  -ms-grid-columns: 1fr 10px max-content;
-  grid-template-columns: 1fr -webkit-max-content;
-  grid-template-columns: 1fr max-content;
-      grid-template-areas: "title select" "content content";
+  -ms-grid-columns: 1fr 10px -webkit-max-content 10px -webkit-max-content;
+  -ms-grid-columns: 1fr 10px max-content 10px max-content;
+  grid-template-columns: 1fr -webkit-max-content -webkit-max-content;
+  grid-template-columns: 1fr max-content max-content;
+      grid-template-areas: "title sort region" "content content content";
   -moz-column-gap: 10px;
        column-gap: 10px;
 }
@@ -1427,10 +1427,16 @@ textarea {
   -ms-grid-column: 1;
 }
 
-.region-rating__select {
+.region-rating__select#sort {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
-  grid-area: select;
+  grid-area: sort;
+}
+
+.region-rating__select#region {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: region;
 }
 
 .region-rating__select .default-select {
@@ -1451,7 +1457,7 @@ textarea {
 
 .region-rating__select .custom-select {
   position: relative;
-  min-width: 150px;
+  min-width: 200px;
 }
 
 .region-rating__select .custom-select__list {
@@ -1465,7 +1471,7 @@ textarea {
   width: -moz-max-content;
   width: max-content;
   z-index: 3;
-  min-width: 150px;
+  min-width: 200px;
   border: 1px solid #C4C4C4;
   max-height: 150px;
   overflow-y: scroll;
@@ -1521,7 +1527,7 @@ textarea {
 }
 
 .region-rating__select .custom-select__output {
-  min-width: 150px;
+  min-width: 200px;
   background: #333;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -1543,7 +1549,7 @@ textarea {
 .region-rating__content {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
+  -ms-grid-column-span: 5;
   grid-area: content;
 }
 

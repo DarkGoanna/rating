@@ -263,21 +263,43 @@ if (experts) {
 // custom select
 function initSelect() {
     const selects = document.querySelectorAll('.select-wrapper');
+    const selectWrapper = document.querySelector('#region-rating');
+
     selects.forEach(select => {
         const otput = select.querySelector('.custom-select__value');
         select.addEventListener('click', event => {
             const target = event.target;
-            if (target.hasAttribute('data-region')) {
-                const region = target.getAttribute('data-region');
-                const sort = target.getAttribute('data-sort');
-                const id = target.closest('[data-category-id]').getAttribute('data-category-id');
+            if (target.hasAttribute('data-option')) {
+                const option = target.getAttribute('data-option');
                 const value = target.textContent;
                 otput.textContent = value;
                 otput.parentElement.classList.remove('open');
-                getRating(id, 4, 'people', region);
+
+                switch (select.id) {
+                    case 'sort':
+                        selectWrapper.setAttribute('data-sort', option);
+                        break;
+                    case 'region':
+                        selectWrapper.setAttribute('data-region', option);
+                        break;
+                }
+
+                renderRegionRating();
             }
         })
     })
+}
+
+function renderRegionRating() {
+    const ratingWrapper = document.querySelector('#region-rating');
+    if (ratingWrapper) {
+        const region = ratingWrapper.getAttribute('data-region');
+        const sort = ratingWrapper.getAttribute('data-sort');
+        const id = ratingWrapper.getAttribute('data-category-id');
+        const count = 4;
+
+        getRating(id, count, sort, region);
+    }
 }
 
 // get rating
@@ -285,11 +307,38 @@ async function getRating(id, perPage, sort, region) {
     let domain = 'https://new.eliteukrainerating.com/';
     let url = `${domain}ajax/get_rating/${id}/?per_page=${perPage}&sort=${sort}&region=${region}`;
 
-    let respo =
+    fetch(url)
+        .then(response => response.text())
+        .then(str => JSON.parse(str))
+        .then(arr => {
+            const wrapper = document.querySelector('.region-table__list');
+            wrapper.textContent = '';
+            arr.forEach((person, i) => {
+                const url = person.url;
+                const name = person.name;
+                const image = person.image;
+                const occupation = person.nomination.name !== null ? person.nomination.name : '';
+                const position = person.dolgnost !== null ? person.dolgnost : '';
 
-        // const rating = await fetch(url);
-        // const response = await JSON.parse(rating);
-        console.log(url);
+                wrapper.insertAdjacentHTML('beforeend', `<li>
+                    <div class="region-table__position t2">${i + 1}</div>
+                    <div class="region-table__person">
+                        <a href="${url}">
+                            <picture class="region-table__photo">
+                                <img loading="lazy" src="${image}" alt="${name}">
+                            </picture>
+                        </a>
+                        <div class="region-table__description">
+                            <p class="region-table__name t3">
+                                <a href="${url}">${name}</a>
+                            </p>
+                            <p class="region-table__text small">${position}</p>
+                        </div>
+                    </div>
+                    <div class="region-table__label">${occupation}</div>
+                </li>`);
+            })
+        })
 }
 
 // partners
@@ -345,6 +394,8 @@ window.addEventListener('load', () => {
     lastRating();
     news();
     initSelect();
+    renderRegionRating();
+
 });
 
 // при ресайзе

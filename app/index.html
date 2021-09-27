@@ -632,16 +632,38 @@
             </div>
     </section>
 
-    <section class="region-rating pt" data-category-id="9">
+    <section id="region-rating" class="region-rating pt" data-category-id="9" data-region="odeska" data-sort="people">
         <div class="container">
             <div class="region-rating__inner">
                 <div class="region-rating__title t2">Рейтинг по регионам</div>
-                <div class="region-rating__select select-wrapper">
+
+                <!-- народный рейтинг / экспертный рейтинг -->
+                <div class="region-rating__select select-wrapper" id="sort">
                     <!-- only on ios -->
-                    <select class="default-select" name="regions">
-                        <option data-region="odeska">Одесская об.</option>
-                        <option data-region="kiyvska">Киевская об.</option>
-                        <option data-region="lvivska">Львовская об.</option>
+                    <select class="default-select">
+                        <option data-option="people">Народный рейтинг</option>
+                        <option data-option="experts">Экспертный рейтинг</option>
+                    </select>
+                    <!-- other devices -->
+                    <div class="custom-select">
+                        <div class="custom-select__output has-arrow">
+                            <span class="custom-select__value">Народный рейтинг</span>
+                            <button class="custom-select__btn delete-btn-style arrow" type="button"></button>
+                        </div>
+                        <ul class="custom-select__list">
+                            <li data-option="people">Народный рейтинг</li>
+                            <li data-option="experts">Экспертный рейтинг</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- области -->
+                <div class="region-rating__select select-wrapper" id="region">
+                    <!-- only on ios -->
+                    <select class="default-select">
+                        <option data-option="odeska">Одесская об.</option>
+                        <option data-option="kiyvska">Киевская об.</option>
+                        <option data-option="lvivska">Львовская об.</option>
                     </select>
                     <!-- other devices -->
                     <div class="custom-select">
@@ -650,12 +672,13 @@
                             <button class="custom-select__btn delete-btn-style arrow" type="button"></button>
                         </div>
                         <ul class="custom-select__list">
-                            <li data-region="odeska">Одесская об.</li>
-                            <li data-region="kiyvska">Киевская об.</li>
-                            <li data-region="lvivska">Львовская об.</li>
+                            <li data-option="odeska">Одесская об.</li>
+                            <li data-option="kiyvska">Киевская об.</li>
+                            <li data-option="lvivska">Львовская об.</li>
                         </ul>
                     </div>
                 </div>
+
                 <div class="region-rating__content decor-line">
                     <div class="region-content">
                         <div class="region-content__about">
@@ -683,80 +706,7 @@
                                 <div class="region-table__th small">Имя</div>
                                 <div class="region-table__th small">Род деятельности</div>
                             </div>
-                            <ul class="region-table__list">
-                                <li>
-                                    <div class="region-table__position t2">1</div>
-                                    <div class="region-table__person">
-                                        <a href="#">
-                                            <picture class="region-table__photo">
-                                                <!-- <source srcset="url.webp" type="image/webp"> -->
-                                                <img loading="lazy" src="url.jpg" alt="">
-                                            </picture>
-                                        </a>
-                                        <div class="region-table__description">
-                                            <p class="region-table__name t3">
-                                                <a href="#">Михаил фридман</a>
-                                            </p>
-                                            <p class="region-table__text small">Альфа-Банк</p>
-                                        </div>
-                                    </div>
-                                    <div class="region-table__label">Экономика</div>
-                                </li>
-                                <li>
-                                    <div class="region-table__position t2">2</div>
-                                    <div class="region-table__person">
-                                        <a href="#">
-                                            <picture class="region-table__photo">
-                                                <!-- <source srcset="url.webp" type="image/webp"> -->
-                                                <img loading="lazy" src="url.jpg" alt="">
-                                            </picture>
-                                        </a>
-                                        <div class="region-table__description">
-                                            <p class="region-table__name t3">
-                                                <a href="#">Михаил фридман</a>
-                                            </p>
-                                            <p class="region-table__text small">Альфа-Банк</p>
-                                        </div>
-                                    </div>
-                                    <div class="region-table__label">Экономика</div>
-                                </li>
-                                <li>
-                                    <div class="region-table__position t2">3</div>
-                                    <div class="region-table__person">
-                                        <a href="#">
-                                            <picture class="region-table__photo">
-                                                <!-- <source srcset="url.webp" type="image/webp"> -->
-                                                <img loading="lazy" src="url.jpg" alt="">
-                                            </picture>
-                                        </a>
-                                        <div class="region-table__description">
-                                            <p class="region-table__name t3">
-                                                <a href="#">Михаил фридман</a>
-                                            </p>
-                                            <p class="region-table__text small">Альфа-Банк</p>
-                                        </div>
-                                    </div>
-                                    <div class="region-table__label">Экономика</div>
-                                </li>
-                                <li>
-                                    <div class="region-table__position t2">4</div>
-                                    <div class="region-table__person">
-                                        <a href="#">
-                                            <picture class="region-table__photo">
-                                                <!-- <source srcset="url.webp" type="image/webp"> -->
-                                                <img loading="lazy" src="url.jpg" alt="">
-                                            </picture>
-                                        </a>
-                                        <div class="region-table__description">
-                                            <p class="region-table__name t3">
-                                                <a href="#">Михаил фридман</a>
-                                            </p>
-                                            <p class="region-table__text small">Альфа-Банк</p>
-                                        </div>
-                                    </div>
-                                    <div class="region-table__label">Экономика</div>
-                                </li>
-                            </ul>
+                            <ul class="region-table__list"></ul>
                         </div>
                     </div>
                 </div>

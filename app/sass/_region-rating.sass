@@ -1,13 +1,16 @@
 .region-rating
   &__inner
     display: grid
-    grid-template-columns: 1fr max-content
-    grid-template-areas: 'title select''content content'
+    grid-template-columns: 1fr max-content max-content
+    grid-template-areas: 'title sort region''content content content'
     column-gap: 10px
   &__title
     grid-area: title
   &__select
-    grid-area: select
+    &#sort
+      grid-area: sort
+    &#region
+      grid-area: region
     & .default-select
       display: none
       min-width: 100px
@@ -22,7 +25,7 @@
       font-size: 16px
     & .custom-select
       position: relative
-      min-width: 150px
+      min-width: 200px
       &__list
         opacity: 0
         visibility: hidden
@@ -32,7 +35,7 @@
         right: 0
         width: max-content
         z-index: 3
-        min-width: 150px
+        min-width: 200px
         border: 1px solid $middle
         max-height: 150px
         overflow-y: scroll
@@ -71,7 +74,7 @@
             right: 15px
             border-color: $light
       &__output
-        min-width: 150px
+        min-width: 200px
         background: $dark
         width: max-content
         height: 40px
