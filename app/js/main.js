@@ -505,6 +505,21 @@ function renderArchive(url) {
         })
 }
 
+// like 
+const likes = document.querySelectorAll('.like__btn');
+if (likes.length) {
+    likes.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const wrapper = btn.closest('.like__count');
+            if (wrapper.getAttribute('data-pressed') === 'false') {
+                wrapper.setAttribute('data-pressed', 'true');
+                const count = btn.nextElementSibling;
+                count.textContent = ++count.textContent;
+            }
+        })
+    })
+}
+
 // при загрузке
 window.addEventListener('load', () => {
     isMobile = window.matchMedia(`(max - width: ${desktopBreakpoint}px)`).matches;

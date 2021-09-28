@@ -12,6 +12,54 @@
     overflow: hidden
   &__ratings
     grid-area: ratings
+    &-content
+      position: relative
+      &::after
+        content: ''
+        position: absolute
+        left: 0
+        top: calc( 100% - 30px )
+        width: 100%
+        height: 30px
+        background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)
+        pointer-events: none
+    &-list
+      max-height: 500px
+      overflow-y: scroll
+      margin-right: -10px
+      padding-right: 10px
+      &::-webkit-scrollbar
+        width: 4px
+        background: transparent
+      &::-webkit-scrollbar-track
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1)
+      &::-webkit-scrollbar-thumb
+        background: $dark
+      & li
+        list-style: none
+        display: grid
+        grid-template-columns: 120px 1fr
+        grid-column-gap: 25px
+        padding: 22px 0 8px
+        border-bottom: 1px solid $light
+    &-description
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+    &-image
+      height: 90px
+      & img
+        object-fit: cover
+        display: block
+        width: 100%
+        height: 100%
+        background: $light
+    &-likes
+      margin-top: 12px
+    &-text
+      color: $dark
+    &-inner
+      padding-top: 0
   &__bio
     grid-area: bio
   &__photo
@@ -26,6 +74,7 @@
     & .socials
       display: flex
       align-items: center
+      gap: 5px
       &__item
         width: 32px
         height: 32px
@@ -52,3 +101,55 @@
       & span
         &:last-child
           text-align: right
+@media screen and ( max-width: 1000px )
+  .person
+    &__inner
+      grid-template-columns: 100%
+      grid-template-areas: 'about''bio''ratings'
+    &__ratings
+      &-list
+        max-height: max-content
+        overflow-y: auto
+      &-content
+        &::after
+          content: none
+    &__about
+      display: block
+    &__photo
+      min-height: auto
+      max-width: 200px
+      float: left
+      margin: 0 15px 15px 0
+    &__name
+      display: inline-block
+    &__socials
+      display: inline-block
+      margin-left: 15px
+    &__info
+      margin-left: 215px
+@media screen and ( max-width: 580px )
+  .person
+    &__about
+      display: grid
+    &__photo
+      max-width: 100%
+      float: none
+      margin: 0 0 30px 0
+    &__name
+      display: block
+    &__socials
+      display: block
+      margin-left: auto
+    &__info
+      margin-left: 0
+@media screen and ( max-width: 400px )
+  .person
+    &__ratings
+      &-list
+        & li
+          grid-template-columns: 100%
+      &-image
+        height: auto
+        min-height: 150px
+        width: 100%
+        margin-bottom: 15px

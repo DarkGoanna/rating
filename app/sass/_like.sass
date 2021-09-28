@@ -1,0 +1,25 @@
+.like
+  display: flex
+  align-items: center
+  justify-content: space-between
+  color: #828282
+  &__count
+    display: flex
+    align-items: center
+    column-gap: 15px
+    transition: .2s
+    &[data-pressed="true"]
+      color: $active
+      transition: .2s
+      font-weight: 600
+      & span
+      & .like__btn
+        & svg path
+          stroke: $active
+          transition: .3s
+  &__btn
+    background: transparent
+    border: none
+    cursor: pointer
+    & svg path
+      transition: .2s

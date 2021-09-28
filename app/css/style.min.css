@@ -2197,6 +2197,83 @@ textarea {
   grid-area: ratings;
 }
 
+.person__ratings-content {
+  position: relative;
+}
+
+.person__ratings-content::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc( 100% - 30px);
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, #fff 100%);
+  pointer-events: none;
+}
+
+.person__ratings-list {
+  max-height: 500px;
+  overflow-y: scroll;
+  margin-right: -10px;
+  padding-right: 10px;
+}
+
+.person__ratings-list::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+.person__ratings-list::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+.person__ratings-list::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+.person__ratings-list li {
+  list-style: none;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 120px 1fr;
+  grid-template-columns: 120px 1fr;
+  grid-column-gap: 25px;
+  padding: 22px 0 8px;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.person__ratings-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.person__ratings-image {
+  height: 90px;
+}
+
+.person__ratings-image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #DFDFDF;
+}
+
+.person__ratings-likes {
+  margin-top: 12px;
+}
+
+.person__ratings-text {
+  color: #333;
+}
+
+.person__ratings-inner {
+  padding-top: 0;
+}
+
 .person__bio {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
@@ -2221,6 +2298,7 @@ textarea {
 .person__socials .socials {
   display: flex;
   align-items: center;
+  gap: 5px;
 }
 
 .person__socials .socials__item {
@@ -2260,6 +2338,42 @@ textarea {
 
 .person__info li span:last-child {
   text-align: right;
+}
+
+.like {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #828282;
+}
+
+.like__count {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+  transition: .2s;
+}
+
+.like__count[data-pressed="true"] {
+  color: #0C658B;
+  transition: .2s;
+  font-weight: 600;
+}
+
+.like__count[data-pressed="true"] .like__btn svg path {
+  stroke: #0C658B;
+  transition: .3s;
+}
+
+.like__btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.like__btn svg path {
+  transition: .2s;
 }
 
 @media screen and (min-width: 1001px) {
@@ -2539,6 +2653,64 @@ textarea {
 
   .archive__content {
     grid-gap: 30px;
+  }
+
+  .person__inner {
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: auto 60px auto 60px auto;
+        grid-template-areas: "about" "bio" "ratings";
+  }
+
+  .person__ratings-list {
+    max-height: -webkit-max-content;
+    max-height: -moz-max-content;
+    max-height: max-content;
+    overflow-y: auto;
+  }
+
+  .person__ratings-content::after {
+    content: none;
+  }
+
+  .person__about {
+    display: block;
+  }
+
+  .person__photo {
+    min-height: auto;
+    max-width: 200px;
+    float: left;
+    margin: 0 15px 15px 0;
+  }
+
+  .person__name {
+    display: inline-block;
+  }
+
+  .person__socials {
+    display: inline-block;
+    margin-left: 15px;
+  }
+
+  .person__info {
+    margin-left: 215px;
+  }
+
+  .person__about {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+
+  .person__ratings {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+  }
+
+  .person__bio {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
   }
 }
 
@@ -2914,6 +3086,30 @@ textarea {
     grid-template-columns: 100%;
   }
 
+  .person__about {
+    display: -ms-grid;
+    display: grid;
+  }
+
+  .person__photo {
+    max-width: 100%;
+    float: none;
+    margin: 0 0 30px 0;
+  }
+
+  .person__name {
+    display: block;
+  }
+
+  .person__socials {
+    display: block;
+    margin-left: auto;
+  }
+
+  .person__info {
+    margin-left: 0;
+  }
+
   .last-rating > .active-ratings__title {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -3180,6 +3376,18 @@ textarea {
     -ms-grid-columns: 1fr 60px;
     grid-template-columns: 1fr 60px;
         grid-template-areas: "btn arrows" "slider slider";
+  }
+
+  .person__ratings-list li {
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+  }
+
+  .person__ratings-image {
+    height: auto;
+    min-height: 150px;
+    width: 100%;
+    margin-bottom: 15px;
   }
 
   .active-ratings__arrows {
