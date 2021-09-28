@@ -1,0 +1,21 @@
+.pagination
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 8px
+  grid-column: 1/-1
+  & .page-numbers
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 32px
+    height: 32px
+    cursor: pointer
+    border-radius: 4px
+    border: 1px solid $light
+    color: $dark
+    transition: .2s
+    &.current
+      border-color: $dark
+      color: $dark
+      transition: .2s

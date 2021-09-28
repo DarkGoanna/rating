@@ -96,13 +96,13 @@ function fixHeaderHeight() {
 // is Apple
 function isApple() {
     return [
-            'iPad Simulator',
-            'iPhone Simulator',
-            'iPod Simulator',
-            'iPad',
-            'iPhone',
-            'iPod'
-        ].includes(navigator.platform)
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+    ].includes(navigator.platform)
         // iPad on iOS 13 detection
         ||
         (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
@@ -264,30 +264,61 @@ if (experts) {
 function initSelect() {
     const selects = document.querySelectorAll('.select-wrapper');
     const selectWrapper = document.querySelector('#region-rating');
+    let label = null;
 
-    selects.forEach(select => {
-        const otput = select.querySelector('.custom-select__value');
-        select.addEventListener('click', event => {
-            const target = event.target;
-            if (target.hasAttribute('data-option')) {
-                const option = target.getAttribute('data-option');
-                const value = target.textContent;
-                otput.textContent = value;
-                otput.parentElement.classList.remove('open');
+    if (selects.length) {
+        if (selectWrapper) {
+            label = selectWrapper.querySelector('.content__label');
+        }
+        selects.forEach(select => {
+            const otput = select.querySelector('.custom-select__value');
+            if (!isApple()) {
+                // for other devices - custom select
+                select.addEventListener('click', event => {
+                    const target = event.target;
+                    if (target.hasAttribute('data-option')) {
+                        const option = target.getAttribute('data-option');
+                        const value = target.textContent;
+                        otput.textContent = value;
+                        label.textContent = value;
+                        otput.parentElement.classList.remove('open');
 
-                switch (select.id) {
-                    case 'sort':
-                        selectWrapper.setAttribute('data-sort', option);
-                        break;
-                    case 'region':
-                        selectWrapper.setAttribute('data-region', option);
-                        break;
-                }
+                        switch (select.id) {
+                            case 'sort':
+                                selectWrapper.setAttribute('data-sort', option);
+                                break;
+                            case 'region':
+                                selectWrapper.setAttribute('data-region', option);
+                                break;
+                        }
 
-                renderRegionRating();
+                        renderRegionRating();
+                    }
+                })
+            } else {
+                // for ios - default select
+                select.querySelectorAll('.default-select').forEach(ds => {
+                    ds.addEventListener('change', event => {
+                        const active = event.target.querySelector('option:checked')
+                        const option = active.getAttribute('data-option');
+                        label.textContent = active.textContent;
+
+                        switch (select.id) {
+                            case 'sort':
+                                selectWrapper.setAttribute('data-sort', option);
+                                break;
+                            case 'region':
+                                selectWrapper.setAttribute('data-region', option);
+                                break;
+                        }
+
+                        renderRegionRating();
+                    })
+                })
             }
         })
-    })
+    }
+
 }
 
 function renderRegionRating() {
@@ -303,7 +334,7 @@ function renderRegionRating() {
 }
 
 // get rating
-async function getRating(id, perPage, sort, region) {
+function getRating(id, perPage, sort, region) {
     let domain = 'https://new.eliteukrainerating.com/';
     let url = `${domain}ajax/get_rating/${id}/?per_page=${perPage}&sort=${sort}&region=${region}`;
 
@@ -381,9 +412,102 @@ if (partners) {
     });
 }
 
+// archive
+const activeYears = document.querySelector('.archive__years');
+
+if (activeYears) {
+    // slider for year buttons
+    new Swiper(activeYears, {
+        slidesPerView: 3,
+        spaceBetween: 5,
+        navigation: {
+            prevEl: ".archive__prev",
+            nextEl: ".archive__next",
+        },
+    });
+
+    // init first load data
+    const activeButton = activeYears.querySelector('.swiper-slide-active');
+    activeButton.classList.add('active');
+
+    const count = 2;
+    const domain = 'https://new.eliteukrainerating.com';
+    let id = activeYears.closest('.archive').getAttribute('id');
+    let year = activeButton.getAttribute('data-year');
+    let lang = html.getAttribute('lang');
+    let language = (lang !== 'ru') ? `lang=${lang}` : '';
+    let url = `${domain}/ajax/get_ratings`;
+
+    async function callArchiveRender() {
+        if (id === 'archive__page') {
+            url = language ? `${url}/${year}/?${language}` : `${url}/${year}/`;
+            await renderArchive(url);
+            await initPagination('#archive__page .archive__content', '.archive__card', 12);
+        } else {
+            url = language ? `${url}/${year}/?${language}&per_page=${count}` : `${url}/${year}/?per_page=${count}`;
+            renderArchive(url);
+        }
+    }
+
+    callArchiveRender();
+
+    // load new data on click
+    activeYears.addEventListener('click', event => {
+        const target = event.target;
+        if (target.hasAttribute('data-year')) {
+            activeYears.querySelectorAll('.archive__years li').forEach(li => li.classList.remove('active'));
+            target.classList.add('active');
+
+            // update this variables
+            id = target.closest('.archive').getAttribute('id');
+            year = target.getAttribute('data-year');
+            lang = html.getAttribute('lang');
+            language = (lang === 'ru') ? '' : `lang=${lang}`;
+            url = `${domain}/ajax/get_ratings`;
+
+            // on "archive__page" we will load all cards / on other only 2 card
+            callArchiveRender();
+        }
+    });
+}
+
+// render archive card
+function renderArchive(url) {
+    return fetch(url)
+        .then(response => response.text())
+        .then(str => JSON.parse(str))
+        .then(arr => {
+            const wrapper = document.querySelector('.archive__content');
+            wrapper.textContent = '';
+            arr.forEach((archive) => {
+                const url = archive.url;
+                const name = archive.name;
+                const image = archive.image;
+                const label = archive.label;
+                const date = archive.date;
+
+                wrapper.insertAdjacentHTML('beforeend', `<div class="archive__card">
+                <div class="content">
+                    ${label ? `<span class="content__label small">${label}</span>` : ''}
+                    <picture class="content__image">
+                        <img loading="lazy" src="${image}" alt="${name}">
+                    </picture>
+                    <div class="content__description">
+                        <div class="content__date">
+                            <span>${date}</span>
+                        </div>
+                        <div class="content__title t2">
+                            <a href="${url}">${name}</a>
+                        </div>
+                    </div>
+                </div>`);
+            })
+        })
+}
+
 // при загрузке
 window.addEventListener('load', () => {
-    isMobile = window.matchMedia(`(max-width: ${desktopBreakpoint}px)`).matches;
+    isMobile = window.matchMedia(`(max - width: ${desktopBreakpoint}px)`).matches;
     fixHeaderHeight();
     addButtonComeback();
     openSubmenu('.arrow');
@@ -400,7 +524,7 @@ window.addEventListener('load', () => {
 
 // при ресайзе
 window.addEventListener('resize', () => {
-    isMobile = window.matchMedia(`(max-width: ${desktopBreakpoint}px)`).matches;
+    isMobile = window.matchMedia(`(max - width: ${desktopBreakpoint}px)`).matches;
     if (!isMobile) {
         closeMenu();
         resetSubmenuPosition();

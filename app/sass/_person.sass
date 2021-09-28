@@ -1,0 +1,54 @@
+.person
+  &__inner
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 60px 30px
+    grid-template-areas: 'about ratings''bio bio'
+  &__about
+    grid-area: about
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-column-gap: 12px
+    overflow: hidden
+  &__ratings
+    grid-area: ratings
+  &__bio
+    grid-area: bio
+  &__photo
+    grid-column: 1/-1
+    min-height: 557px
+    object-fit: cover
+    margin-bottom: 30px
+  &__socials
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    & .socials
+      display: flex
+      align-items: center
+      &__item
+        width: 32px
+        height: 32px
+        border-radius: 8px
+        border: 1px solid transparent
+        transition: .2s
+        display: flex
+        align-items: center
+        justify-content: center
+        & svg path
+          fill: $active
+        &:hover
+          border-color: $active
+          transition: .2s
+  &__info
+    grid-column: 1/-1
+    margin-top: 12px
+    padding-top: 0
+    & li
+      display: grid
+      grid-template-columns: 1fr 1fr
+      padding: 8px 0
+      border-bottom: 1px solid $light
+      & span
+        &:last-child
+          text-align: right

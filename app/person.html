@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__logo">
+                <a href="#" title="logo">
+                    <img loading="lazy" class="header__logo--desctop" src="img/logo-header.svg" alt="logo">
+                    <img loading="lazy" class="header__logo--mobile" src="img/logo-header-mobile.svg" alt="logo">
+                </a>
+            </div>
+            <nav class="header__menu">
+                <ul class="menu">
+                    <li class="has-children">
+                        <a href="#" title="О проекте">О проекте</a>
+                        <ul class="menu__submenu">
+                            <li><a href="#" title="О проекте">О проекте</a></li>
+                            <li><a href="#" title="Условия участия">Условия участия</a></li>
+                            <li><a href="#" title="Как мы голосуем">Как мы голосуем</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="Рейтинги">Рейтинги</a></li>
+                    <li><a href="#" title="Эксперты">Эксперты</a></li>
+                    <li><a href="#" title="Досье">Досье</a></li>
+                    <li><a href="#" title="Новости">Новости</a></li>
+                    <li><a href="#" title="Партнёры">Партнёры</a></li>
+                    <li><a href="#" title="Контакты">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header__burger">
+                <button class="burger delete-btn-style">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="header__language">
+                <div class="language">
+                    <div class="language__current has-arrow">
+                        <span class="language__active">ru</span>
+                        <button class="language__btn delete-btn-style arrow" type="button"></button>
+                    </div>
+                    <ul class="language__list">
+                        <li data-language="ru">ru</li>
+                        <li data-language="ua">ua</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header__search">
+                <div class="search">
+                    <button class="search__btn delete-btn-style">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5837 3.51256C12.5363 5.46518 12.5363 8.63101 10.5837 10.5836C8.63106 12.5363 5.46524 12.5363 3.51261 10.5836C1.55999 8.63101 1.55999 5.46518 3.51261 3.51256C5.46524 1.55994 8.63106 1.55994 10.5837 3.51256ZM11.854 10.6415C13.6159 8.2914 13.4281 4.94277 11.2908 2.80545C8.94764 0.462309 5.14865 0.462309 2.80551 2.80545C0.462361 5.1486 0.462361 8.94759 2.80551 11.2907C5.11662 13.6018 8.84404 13.6334 11.1939 11.3855C11.1989 11.391 11.204 11.3964 11.2093 11.4016L14.7448 14.9372C14.9401 15.1324 15.2567 15.1324 15.452 14.9372C15.6472 14.7419 15.6472 14.4253 15.452 14.2301L11.9164 10.6945C11.8968 10.6749 11.8759 10.6572 11.854 10.6415Z" fill="#252B42"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0">
+                            <rect width="18" height="18" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>                          
+                    </button>
+                    <div class="search__input-wrapper">
+                        <input class="search__input delete-btn-style" type="text" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumbs">
+        <div class="container">
+            <div class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a href="/">Главная</a></li>
+                <li class="breadcrumbs__item current"><a href="#">Marketplace Products</a></li>
+            </div>
+        </div>
+    </section>
+
+    <section class="person">
+      <div class="container">
+        <div class="person__inner">
+          <div class="person__about">
+            <img class="person__photo" src="img/person.jpg" alt="Лина Костенко">
+            <div class="person__name t2">Лина Костенко</div>
+            <div class="person__socials">
+              <ul class="socials">
+                <li class="socials__item telegram">
+                  <a href="#">
+                    <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.7475 0.285148L2.02244 7.89147C0.676284 8.43216 0.684072 9.18311 1.77546 9.51798L6.83967 11.0978L18.5568 3.70505C19.1108 3.36795 19.617 3.54929 19.2009 3.91865L9.70775 12.4862H9.70553L9.70775 12.4873L9.35842 17.7073C9.87018 17.7073 10.096 17.4725 10.3831 17.1955L12.8428 14.8036L17.9593 18.5828C18.9028 19.1024 19.5803 18.8354 19.815 17.7095L23.1737 1.88051C23.5175 0.50209 22.6475 -0.122036 21.7475 0.285148Z" fill="#054FA5"/>
+                    </svg>                    
+                  </a>
+                </li>
+                <li class="socials__item facebook">
+                  <a href="#">
+                    <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.94173 12H10.5608L11.6084 8H7.94173V6C7.94173 4.97 7.94173 4 10.037 4H11.6084V0.64C11.2669 0.597 9.97726 0.5 8.61535 0.5C5.77107 0.5 3.75126 2.157 3.75126 5.2V8H0.608398V12H3.75126V20.5H7.94173V12Z" fill="#054FA5"/>
+                    </svg>                    
+                  </a>
+                </li>
+                <li class="socials__item instagram">
+                  <a href="#">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10.1084 0.443359C12.8254 0.443359 13.1644 0.453416 14.2304 0.503699C15.2954 0.553983 16.0204 0.721929 16.6584 0.971335C17.3184 1.22677 17.8744 1.57272 18.4304 2.13087C18.9389 2.6336 19.3324 3.24172 19.5834 3.91291C19.8304 4.55352 19.9984 5.28363 20.0484 6.35467C20.0954 7.42671 20.1084 7.76763 20.1084 10.5C20.1084 13.2324 20.0984 13.5733 20.0484 14.6454C19.9984 15.7164 19.8304 16.4455 19.5834 17.0871C19.3331 17.7587 18.9395 18.367 18.4304 18.8692C17.9304 19.3804 17.3257 19.776 16.6584 20.0287C16.0214 20.2771 15.2954 20.4461 14.2304 20.4964C13.1644 20.5436 12.8254 20.5567 10.1084 20.5567C7.3914 20.5567 7.0524 20.5466 5.9864 20.4964C4.9214 20.4461 4.1964 20.2771 3.5584 20.0287C2.89072 19.7768 2.28593 19.381 1.7864 18.8692C1.2778 18.3665 0.88433 17.7584 0.633399 17.0871C0.385399 16.4465 0.218398 15.7164 0.168398 14.6454C0.121398 13.5733 0.108398 13.2324 0.108398 10.5C0.108398 7.76763 0.118398 7.42671 0.168398 6.35467C0.218398 5.28263 0.385399 4.55452 0.633399 3.91291C0.883635 3.2413 1.2772 2.63302 1.7864 2.13087C2.28607 1.61922 2.89083 1.22348 3.5584 0.971335C4.1964 0.721929 4.9204 0.553983 5.9864 0.503699C7.0524 0.456433 7.3914 0.443359 10.1084 0.443359ZM10.1084 5.47169C8.78232 5.47169 7.51055 6.00146 6.57286 6.94446C5.63518 7.88745 5.1084 9.16643 5.1084 10.5C5.1084 11.8336 5.63518 13.1126 6.57286 14.0556C7.51055 14.9986 8.78232 15.5284 10.1084 15.5284C11.4345 15.5284 12.7063 14.9986 13.6439 14.0556C14.5816 13.1126 15.1084 11.8336 15.1084 10.5C15.1084 9.16643 14.5816 7.88745 13.6439 6.94446C12.7063 6.00146 11.4345 5.47169 10.1084 5.47169ZM16.6084 5.22028C16.6084 4.88688 16.4767 4.56713 16.2423 4.33138C16.0079 4.09564 15.6899 3.96319 15.3584 3.96319C15.0269 3.96319 14.7089 4.09564 14.4745 4.33138C14.2401 4.56713 14.1084 4.88688 14.1084 5.22028C14.1084 5.55368 14.2401 5.87342 14.4745 6.10917C14.7089 6.34492 15.0269 6.47736 15.3584 6.47736C15.6899 6.47736 16.0079 6.34492 16.2423 6.10917C16.4767 5.87342 16.6084 5.55368 16.6084 5.22028ZM10.1084 7.48303C10.904 7.48303 11.6671 7.80089 12.2297 8.36668C12.7923 8.93248 13.1084 9.69987 13.1084 10.5C13.1084 11.3002 12.7923 12.0676 12.2297 12.6334C11.6671 13.1992 10.904 13.517 10.1084 13.517C9.31275 13.517 8.54969 13.1992 7.98708 12.6334C7.42447 12.0676 7.1084 11.3002 7.1084 10.5C7.1084 9.69987 7.42447 8.93248 7.98708 8.36668C8.54969 7.80089 9.31275 7.48303 10.1084 7.48303Z" fill="#054FA5"/>
+                    </svg>                    
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <ul class="person__info decor-line">
+              <li>
+                <span>Имя :</span>
+                <span>Лина Костенко</span>
+              </li>
+              <li>
+                <span>Род деятельности:</span>
+                <span>поэтесса</span>
+              </li>
+            </ul>
+          </div>
+          <div class="person__ratings">
+            <div class="person__ratings--title t3">Рейтинги</div>
+            <div class="person__ratings-content decor-line">
+              <ul class="person__ratings-list">
+                <li>
+                  <span class="person__ratings-position">№1</span>
+                  <img src="" alt="" class="person__ratings-image">
+                  <div class="person__ratings-description">
+                    <p class="person__ratings-text">
+                      «Народный рейтинг. 100 современников, которые изменили Украину — голосование закончилось»
+                    </p>
+                    <div class="person__ratings-likes like">
+                      <div class="like__text small">Рейтинг</div>
+                      <div class="like__count">
+                        <img src="img/like.svg" alt="">
+                        <span>356</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="person__ratings-position"></span>
+                  <img src="" alt="" class="person__ratings-image">
+                  <div class="person__ratings-description">
+                    <p class="person__ratings-text">
+
+                    </p>
+                    <div class="person__ratings-likes like">
+                      <div class="like__text small">Рейтинг</div>
+                      <div class="like__count">
+                        <img src="img/like.svg" alt="">
+                        <span>356</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="person__ratings-position"></span>
+                  <img src="" alt="" class="person__ratings-image">
+                  <div class="person__ratings-description">
+                    <p class="person__ratings-text">
+
+                    </p>
+                    <div class="person__ratings-likes like">
+                      <div class="like__text small">Рейтинг</div>
+                      <div class="like__count">
+                        <img src="img/like.svg" alt="">
+                        <span>356</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="person__bio">
+            <div class="person__bio--title t2">Биография</div>
+            <div class="person__bio-content decor-line">
+              Если Попович, Сверстюк и Брюховецкий апеллировали к разуму соотечественников, то Лина Костенко сумела достучаться до их сердец. Она была одной из самых ярких звезд в плеяде молодых поэтов 1950–1960 годов.
+
+              В конце ­1960-х Костенко номинировали на Нобелевскую премию по литературе. Причины, по которым награда в итоге ей так и не досталась, носили политический характер. Впрочем, премиями поэтесса никогда особенно не дорожила. Несколько раз сама отказывалась от государственных наград.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__col">
+                    <div class="footer__logo">
+                        <div class="logo">
+                            <a href="#">
+                                <img src="img/logo-footer.svg" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer__description small">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque, pellentesque dictum posuere id diam rutrum.
+                        </p>
+                    </div>
+                    <div class="footer__socials">
+                        <div class="socials">
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="facebook">
+                                    <img src="img/Facebook.svg" alt="facebook">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="twitter">
+                                    <img src="img/Twitter.svg" alt="twitter">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="instagram">
+                                    <img src="img/Instagram.svg" alt="instagram">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="youtube">
+                                    <img src="img/Youtube.svg" alt="youtube">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__title t2">Меню</div>
+                    <div class="footer__col-inner decor-line">
+                        <nav class="footer__menu">
+                            <ul class="menu">
+                                <li><a href="#" title="О проекте">О проекте</a></li>
+                                <li><a href="#" title="Рейтинги">Рейтинги</a></li>
+                                <li><a href="#" title="Эксперты">Эксперты</a></li>
+                                <li><a href="#" title="Досье">Досье</a></li>
+                                <li><a href="#" title="Новости">Новости</a></li>
+                                <li><a href="#" title="Партнёры">Партнёры</a></li>
+                                <li><a href="#" title="Контакты">Контакты</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__title t2">Свяжись с нами</div>
+                    <div class="footer__col-inner decor-line">
+                        <div class="footer__callback">
+                            <div class="callback">
+                                <div class="callback__text small">
+                                    To be updated with all the latest news, offers and special annoucements.
+                                </div>
+                                <form action="" class="callback__form">
+                                    <input type="text" name="name" class="callback__input" placeholder="Ваше имя">
+                                    <input type="text" name="phone" class="callback__input" placeholder="Ваш e-mail">
+                                    <button type="submit" class="btn callback__btn">Отправить</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
