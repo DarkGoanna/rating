@@ -2222,7 +2222,7 @@ textarea {
 
 .person__photo {
   grid-column: 1/-1;
-  min-height: 557px;
+  overflow: hidden;
   -o-object-fit: cover;
      object-fit: cover;
   margin-bottom: 30px;
@@ -2315,6 +2315,10 @@ textarea {
   cursor: pointer;
 }
 
+.like__btn svg {
+  pointer-events: none;
+}
+
 .like__btn svg path {
   transition: .2s;
 }
@@ -2362,6 +2366,11 @@ textarea {
   position: absolute;
   top: 0;
   right: 15px;
+}
+
+.timer__inner ul li p:last-child {
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .custom-select {
@@ -2745,6 +2754,61 @@ textarea {
   transition: .2s;
 }
 
+#participants .experts__inner {
+  -ms-grid-columns: 1fr -webkit-max-content;
+  -ms-grid-columns: 1fr max-content;
+  grid-template-columns: 1fr -webkit-max-content;
+  grid-template-columns: 1fr max-content;
+}
+
+#participants .experts__alphabet {
+  grid-column: 1/-1;
+}
+
+#participants .experts__content {
+  margin-top: 20px;
+  grid-column: 1/-1;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (-webkit-max-content)[4];
+  -ms-grid-columns: (max-content)[4];
+  grid-template-columns: repeat(4, -webkit-max-content);
+  grid-template-columns: repeat(4, max-content);
+  justify-content: space-between;
+  grid-gap: 40px 30px;
+}
+
+#participants .experts__card {
+  margin: 0;
+}
+
+#participants .experts__reset {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0 15px;
+}
+
+.alphabet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.alphabet li {
+  list-style: none;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.alphabet li.current {
+  font-weight: 600;
+  color: #0C658B;
+}
+
 @media screen and (min-width: 581px) {
   .rating__links.decor-line {
     margin-top: 0;
@@ -2816,6 +2880,10 @@ textarea {
     visibility: visible;
     transition: .2s;
   }
+
+  .person__photo {
+    height: 557px;
+  }
 }
 
 @media screen and (min-width: 1201px) {
@@ -2886,6 +2954,19 @@ textarea {
 
   .rating__selects.decor-line {
     padding-top: 15px;
+  }
+
+  #participants .experts__content {
+    -ms-grid-columns: (1fr)[4];
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  #participants .experts__content .content__image {
+    max-width: 100%;
+  }
+
+  #participants .experts__card {
+    max-width: 100%;
   }
 
   .rating__inner > .active-ratings__title {
@@ -3182,6 +3263,11 @@ textarea {
     grid-column-gap: 30px;
   }
 
+  #participants .experts__content {
+    -ms-grid-columns: (1fr)[3];
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .person__about {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -3329,6 +3415,11 @@ textarea {
   .rating__links {
     flex-direction: column;
     row-gap: 10px;
+  }
+
+  #participants .experts__content {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .region-rating__inner > .active-ratings__title {
@@ -3699,6 +3790,11 @@ textarea {
   .rating__card .content__close {
     width: 25px;
     height: 25px;
+  }
+
+  #participants .experts__content {
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
   }
 
   .last-rating > .active-ratings__title {

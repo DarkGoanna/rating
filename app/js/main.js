@@ -496,17 +496,20 @@ function renderArchive(url) {
 }
 
 // like 
-const likes = document.querySelectorAll('.like__btn');
-if (likes.length) {
-    likes.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const wrapper = btn.closest('.like__count');
+function initLike(parent) {
+    parent = parent ? parent : 'body';
+    const container = document.querySelector(parent);
+    container.addEventListener('click', event => {
+        event.stopPropagation()
+        const target = event.target;
+        if (target.classList.contains('like__btn')) {
+            const wrapper = target.closest('.like__count');
             if (wrapper.getAttribute('data-pressed') === 'false') {
                 wrapper.setAttribute('data-pressed', 'true');
-                const count = btn.nextElementSibling;
+                const count = target.nextElementSibling;
                 count.textContent = ++count.textContent;
             }
-        })
+        }
     })
 }
 
@@ -611,6 +614,7 @@ function checkRatingLinks() {
 function initRating() {
     const rating = document.querySelector('#rating');
     if (rating) {
+        initLike('#rating');
         rating.addEventListener('click', event => {
             const target = event.target;
             if (target.classList.contains('content__switcher')) {
@@ -634,6 +638,17 @@ function initRating() {
     }
 }
 
+// alphabet
+function initAlphabet() {
+    const participants = document.querySelector('#participants');
+    if (participants) {
+        const alphabet = participants.querySelector('.alphabet');
+        const letersRU = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Э', 'Ю', 'Я'];
+        const letersUA = ['А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ю', 'Я'];
+        const currentArray = currentLanguage === 'ru' ? letersRU : letersUA;
+    }
+}
+
 // при загрузке
 window.addEventListener('load', () => {
     isMobile = window.matchMedia(`(max - width: ${desktopBreakpoint}px)`).matches;
@@ -644,6 +659,7 @@ window.addEventListener('load', () => {
     openSubmenu('.search__btn');
     if (isMobile) setSubmenuPosition();
     if (isApple()) html.classList.add('ios');
+    initLike();
     languageSwitcher();
     lastRating();
     news();

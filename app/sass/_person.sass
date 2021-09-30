@@ -64,7 +64,7 @@
     grid-area: bio
   &__photo
     grid-column: 1/-1
-    min-height: 557px
+    overflow: hidden
     object-fit: cover
     margin-bottom: 30px
     & img
@@ -103,18 +103,15 @@
       & span
         &:last-child
           text-align: right
+@media screen and ( min-width: 1001px )
+  .person
+    &__photo
+      height: 557px
 @media screen and ( max-width: 1000px )
   .person
     &__inner
       grid-template-columns: 100%
       grid-template-areas: 'about''bio''ratings'
-    &__ratings
-      // &-list
-      //   max-height: max-content
-      //   overflow-y: auto
-      // &-content
-        // &::after
-        //   content: none
     &__about
       display: block
     &__photo
