@@ -630,7 +630,7 @@ function initRating() {
             const tail = '/?region=odeska&sort=people';
             url = `${domain}/ajax/get_products/${id}${tail}`;
         }
-        ajaxCardLoad(url, '.rating__content')
+        ajaxCardLoad(url, '.rating__content', id)
     }
 }
 
