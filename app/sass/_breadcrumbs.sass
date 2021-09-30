@@ -10,9 +10,6 @@
     &:not(:last-child)
       position: relative
       padding-right: 40px
-    &:first-child
-      font-weight: 600
-      color: $dark
       &::after
         content: ''
         display: block
@@ -24,6 +21,9 @@
         top: 50%
         right: 20px
         transform: translateY(-50%) rotate(-45deg)
+    &:first-child
+      font-weight: 600
+      color: $dark
     &.current
       color: $active
       pointer-events: none

@@ -5,8 +5,10 @@ const menu = document.querySelector('.header__menu');
 const menuList = menu.querySelector('.menu');
 const menuItemWithSubmenu = document.querySelectorAll('.has-children');
 const desktopBreakpoint = 1000;
-const language = document.querySelector('.language')
+const language = document.querySelector('.language');
 let isMobile = null;
+let currentLanguage = null;
+const domain = 'https://new.eliteukrainerating.com';
 
 // добавляем кнопки раскрытия подменю
 menuItemWithSubmenu.forEach(item => {
@@ -119,6 +121,8 @@ function languageSwitcher() {
             output.parentElement.classList.remove('open')
             output.textContent = languageValue;
             html.setAttribute('lang', languageValue);
+            currentLanguage = languageValue;
+            reRender();
         }
     })
 }
@@ -272,55 +276,40 @@ function initSelect() {
         }
         selects.forEach(select => {
             const otput = select.querySelector('.custom-select__value');
-            if (!isApple()) {
-                // for other devices - custom select
-                select.addEventListener('click', event => {
-                    const target = event.target;
-                    if (target.hasAttribute('data-option')) {
-                        const option = target.getAttribute('data-option');
-                        const value = target.textContent;
-                        otput.textContent = value;
-                        label.textContent = value;
-                        otput.parentElement.classList.remove('open');
+            // for other devices - custom select
+            select.addEventListener('click', event => {
+                const target = event.target;
+                if (target.hasAttribute('data-option')) {
+                    const option = target.getAttribute('data-option');
+                    const value = target.textContent;
+                    otput.textContent = value;
+                    label.textContent = value;
+                    otput.parentElement.classList.remove('open');
 
-                        switch (select.id) {
-                            case 'sort':
-                                selectWrapper.setAttribute('data-sort', option);
-                                break;
-                            case 'region':
-                                selectWrapper.setAttribute('data-region', option);
-                                break;
-                        }
-
-                        renderRegionRating();
+                    switch (select.id) {
+                        case 'sort':
+                            selectWrapper.setAttribute('data-sort', option);
+                            break;
+                        case 'region':
+                            selectWrapper.setAttribute('data-region', option);
+                            break;
                     }
-                })
-            } else {
-                // for ios - default select
-                select.querySelectorAll('.default-select').forEach(ds => {
-                    ds.addEventListener('change', event => {
-                        const active = event.target.querySelector('option:checked')
-                        const option = active.getAttribute('data-option');
-                        label.textContent = active.textContent;
 
-                        switch (select.id) {
-                            case 'sort':
-                                selectWrapper.setAttribute('data-sort', option);
-                                break;
-                            case 'region':
-                                selectWrapper.setAttribute('data-region', option);
-                                break;
-                        }
-
-                        renderRegionRating();
-                    })
-                })
-            }
+                    renderRegionRating();
+                } else if (target.hasAttribute('data-href')) {
+                    const href = target.getAttribute('data-href');
+                    const value = target.textContent;
+                    otput.textContent = value;
+                    otput.parentElement.classList.remove('open');
+                    window.location.href = href;
+                }
+            })
         })
     }
 
 }
 
+// render Region Rating
 function renderRegionRating() {
     const ratingWrapper = document.querySelector('#region-rating');
     if (ratingWrapper) {
@@ -335,8 +324,7 @@ function renderRegionRating() {
 
 // get rating
 function getRating(id, perPage, sort, region) {
-    let domain = 'https://new.eliteukrainerating.com/';
-    let url = `${domain}ajax/get_rating/${id}/?per_page=${perPage}&sort=${sort}&region=${region}`;
+    let url = `${domain}/ajax/get_rating/${id}/?per_page=${perPage}&sort=${sort}&region=${region}`;
 
     fetch(url)
         .then(response => response.text())
@@ -347,7 +335,8 @@ function getRating(id, perPage, sort, region) {
             arr.forEach((person, i) => {
                 const url = person.url;
                 const name = person.name;
-                const image = person.image;
+                const image = person.image ? person.image : '';
+                const webp = person.webp ? person.webp : '';
                 const occupation = person.nomination.name !== null ? person.nomination.name : '';
                 const position = person.dolgnost !== null ? person.dolgnost : '';
 
@@ -356,6 +345,7 @@ function getRating(id, perPage, sort, region) {
                     <div class="region-table__person">
                         <a href="${url}">
                             <picture class="region-table__photo">
+                                <source srcset="${webp}" type="image/webp">
                                 <img loading="lazy" src="${image}" alt="${name}">
                             </picture>
                         </a>
@@ -414,7 +404,6 @@ if (partners) {
 
 // archive
 const activeYears = document.querySelector('.archive__years');
-
 if (activeYears) {
     // slider for year buttons
     new Swiper(activeYears, {
@@ -431,7 +420,6 @@ if (activeYears) {
     activeButton.classList.add('active');
 
     const count = 2;
-    const domain = 'https://new.eliteukrainerating.com';
     let id = activeYears.closest('.archive').getAttribute('id');
     let year = activeButton.getAttribute('data-year');
     let lang = html.getAttribute('lang');
@@ -482,14 +470,16 @@ function renderArchive(url) {
             arr.forEach((archive) => {
                 const url = archive.url;
                 const name = archive.name;
-                const image = archive.image;
-                const label = archive.label;
-                const date = archive.date;
+                const image = archive.image ? archive.image : '';
+                const webp = archive.webp ? archive.webp : '';
+                const label = archive.label ? archive.label : '';
+                const date = archive.date ? archive.date : '';
 
                 wrapper.insertAdjacentHTML('beforeend', `<div class="archive__card">
                 <div class="content">
                     ${label ? `<span class="content__label small">${label}</span>` : ''}
                     <picture class="content__image">
+                        <source srcset="${webp}" type="image/webp">
                         <img loading="lazy" src="${image}" alt="${name}">
                     </picture>
                     <div class="content__description">
@@ -520,9 +510,134 @@ if (likes.length) {
     })
 }
 
+// timer
+function initTimer() {
+    const timers = document.querySelectorAll('.timer');
+    if (timers.length) {
+        // render template
+        function renderTimer(parent = document) {
+            const isRU = currentLanguage === 'ru';
+
+            const text = isRU ? 'Осталось' : 'Залишилося';
+            const days = isRU ? 'дней' : 'днів';
+            const hours = isRU ? 'часов' : 'годин';
+            const minutes = isRU ? 'минут' : 'хвилин';
+            const seconds = isRU ? 'секунд' : 'секунд';
+
+            parent.insertAdjacentHTML('beforeend',
+                `<div class="timer__inner">
+                    <p>${text}</p>
+                    <ul>
+                        <li>
+                            <p class="days"></p>
+                            <p>${days}</p>
+                        </li>
+                        <li>
+                            <p class="hours"></p>
+                            <p>${hours}</p>
+                        </li>
+                        <li>
+                            <p class="minutes"></p>
+                            <p>${minutes}</p>
+                        </li>
+                        <li>
+                            <p class="seconds"></p>
+                            <p>${seconds}</p>
+                        </li>
+                    </ul>
+                </div>`
+            )
+        }
+
+        // start timer
+        function startTimer(date, parent = document) {
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+            const dateOfEnd = new Date(date).getTime();
+            let x = setInterval(function () {
+
+                const now = new Date().getTime();
+                const distance = dateOfEnd - now;
+
+                parent.querySelector('.days').innerText = Math.floor(distance / (day));
+                parent.querySelector('.hours').innerText = Math.floor((distance % (day)) / (hour));
+                parent.querySelector('.minutes').innerText = Math.floor((distance % (hour)) / (minute));
+                parent.querySelector('.seconds').innerText = Math.floor((distance % (minute)) / second);
+
+                //do something later when date is reached
+                if (distance < 0) {
+                    clearInterval(x);
+                    parent.querySelector('.timer__inner').remove();
+                }
+
+            }, 0)
+        }
+
+        timers.forEach(timer => {
+            const date = timer.getAttribute('data-date');
+            renderTimer(timer);
+            startTimer(date, timer);
+        })
+    }
+}
+
+// при смене языка переотрисовать блоки с корректным языком
+function reRender() {
+    // таймеры
+    const timers = document.querySelectorAll('.timer__inner');
+    if (timers.length) {
+        timers.forEach(timer => {
+            timer.remove();
+            initTimer();
+        })
+    }
+}
+
+// expert rating (btn-link) and people rating (btn-link)
+function checkRatingLinks() {
+    const btns = document.querySelectorAll('.rating__link');
+    if (btns.length) {
+        btns.forEach(btn => {
+            if (window.location.pathname === btn.getAttribute('href')) {
+                btn.setAttribute('data-current', true)
+            }
+        })
+    }
+}
+
+// rating page
+function initRating() {
+    const rating = document.querySelector('#rating');
+    if (rating) {
+        rating.addEventListener('click', event => {
+            const target = event.target;
+            if (target.classList.contains('content__switcher')) {
+                const card = target.closest('.rating__card');
+                card.classList.toggle('open');
+            }
+        })
+
+        let url = null;
+        const id = rating.getAttribute('data-category-id');
+
+        if (!window.location.pathname) {
+            url = `${domain}/ajax/get_products/${id}/`;
+        } else {
+            const pathname = window.location.pathname;
+            // const tail = pathname.split('').slice(pathname.indexOf('/', 1)).join('');
+            const tail = '/?region=odeska&sort=people';
+            url = `${domain}/ajax/get_products/${id}${tail}`;
+        }
+        ajaxCardLoad(url, '.rating__content')
+    }
+}
+
 // при загрузке
 window.addEventListener('load', () => {
     isMobile = window.matchMedia(`(max - width: ${desktopBreakpoint}px)`).matches;
+    currentLanguage = html.getAttribute('lang');
     fixHeaderHeight();
     addButtonComeback();
     openSubmenu('.arrow');
@@ -534,7 +649,9 @@ window.addEventListener('load', () => {
     news();
     initSelect();
     renderRegionRating();
-
+    initTimer();
+    checkRatingLinks();
+    initRating();
 });
 
 // при ресайзе

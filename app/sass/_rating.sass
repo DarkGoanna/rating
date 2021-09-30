@@ -1,0 +1,250 @@
+.rating
+  &__inner
+    display: grid
+    grid-template-columns: max-content 1fr 1fr
+    grid-template-areas: 'title links selects''content content content'
+    grid-column-gap: 10px
+    align-items: center
+  &__title
+    grid-area: title
+  &__links
+    grid-area: links
+    display: flex
+    align-items: center
+    column-gap: 10px
+  &__link
+    font-size: 16px
+    max-width: 220px
+    display: flex
+    align-items: center
+    justify-content: center
+    column-gap: 10px
+    background: transparent
+    transition: .2s
+    border: none
+    padding: 0 10px
+    color: $active
+    & svg path
+      fill: $active
+      transition: .2s
+    &:hover,
+    &[data-current="true"]
+      color: #fff
+      transition: .2s
+      background: $active
+      & svg path
+        fill: #fff
+        transition: .2s
+  &__selects
+    grid-area: selects
+    display: flex
+    align-items: center
+    column-gap: 10px
+    justify-content: flex-end
+  &__select
+    min-width: 220px
+  &__content
+    grid-area: content
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    grid-gap: 30px 58px
+  &__card
+    background: #fff
+    & .content
+      padding: 0
+      position: relative
+      overflow: hidden
+      &__title
+        margin-bottom: 8px
+      &__image
+        height: 237px
+        margin-bottom: 20px
+        z-index: 0
+      &__position
+        width: 100%
+        height: 40px
+        position: absolute
+        top: calc(237px - 40px)
+        left: 0
+        background: linear-gradient(270deg, rgba(255, 255, 255, 0) 42.39%, $active 86.58%)
+        color: #fff
+        font-weight: 600
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        padding-left: 25px
+        z-index: 1
+      &__label
+        position: relative
+        top: auto
+        left: auto
+        margin-bottom: 8px
+        z-index: 0
+        background: transparent
+        color: inherit
+        padding: 0
+      &__title
+        position: relative
+        padding-right: 25px
+        & a
+          display: table-caption
+      &__open
+        position: absolute
+        top: 15%
+        right: 5px
+        width: 15px
+        height: 15px
+        border-radius: 50%
+        border: .5px solid $middle
+        background: transparent
+        cursor: pointer
+        &::before
+          content: ''
+          display: block
+          height: 70%
+          background-image: url(../img/i.svg)
+          background-position: center
+          background-repeat: no-repeat
+          background-size: contain
+      &__like
+        margin-top: 8px
+        padding: 8px 0 12px
+        border-top: 1px solid $dark
+        position: relative
+        z-index: 10
+        background: #fff
+      &__close
+        position: absolute
+        top: 12px
+        right: 5px
+        width: 15px
+        height: 15px
+        border-radius: 50%
+        border: none
+        background: transparent
+        cursor: pointer
+        z-index: 11
+        &::before,
+        &::after
+          content: ''
+          display: block
+          width: 100%
+          height: 1px
+          background: #fff
+          position: absolute
+          top: 50%
+          left: 50%
+        &::before
+          transform: translate(-50%, -50%) rotate(45deg)
+        &::after
+          transform: translate(-50%, -50%) rotate(-45deg)
+      &__description
+        position: absolute
+        bottom: -151px
+        left: 0
+        z-index: 9
+        width: 100%
+        height: 151px
+        background: $active
+        color: #fff
+        transition: .2s
+        padding: 8px 8px 8px 12px
+      &__text
+        max-height: 60px
+        overflow-y: scroll
+        &::-webkit-scrollbar
+          width: 3px
+          background: transparent
+        &::-webkit-scrollbar-track
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+        &::-webkit-scrollbar-thumb
+          background: #fff
+          border-radius: 8px
+    &.open
+      & .content
+        &__description
+          bottom: 42px
+          transition: .2s
+@media screen and ( min-width: 1201px )
+  .rating
+    &__selects
+      &.decor-line
+        margin-top: 0
+        padding-top: 0
+        &::before, &::after
+          content: none
+@media screen and ( max-width: 1200px )
+  .rating
+    &__inner
+      grid-template-columns: 1fr max-content
+      grid-template-areas: 'title links''selects selects''content content'
+    &__content
+      grid-template-columns: repeat(3, 1fr)
+      &.decor-line
+        margin-top: 20px
+        padding-top: 0
+        &::before, &::after
+          content: none
+    &__selects
+      &.decor-line
+        padding-top: 15px
+@media screen and ( max-width: 1000px )
+  .rating
+    &__content
+      grid-column-gap: 30px
+@media screen and ( max-width: 768px )
+  .rating
+    &__content
+      grid-template-columns: repeat(2, 1fr)
+      grid-column-gap: 40px
+    &__links
+      flex-direction: column
+      row-gap: 10px
+@media screen and ( min-width: 581px )
+  .rating
+    &__links
+      &.decor-line
+        margin-top: 0
+        padding-top: 0
+        &::before, &::after
+          content: none
+@media screen and ( max-width: 580px )
+  .rating
+    &__inner
+      grid-template-columns: 1fr 1fr
+      grid-template-areas: 'title title' 'links links''selects selects''content content'
+    &__link
+      min-width: 100%
+    &__selects
+      flex-direction: column
+      row-gap: 10px
+    &__select
+      min-width: 100%
+    &__selects
+      &.decor-line
+        margin-top: 10px
+        padding-top: 0
+        &::before, &::after
+          content: none
+    &__content
+      grid-template-columns: 100%
+    &__card
+      & .content
+        &__image
+          height: 350px
+        &__position
+          top: calc(350px - 40px)
+        &__open
+          width: 30px
+          height: 30px
+        &__close
+          width: 25px
+          height: 25px
+@media screen and ( max-width: 480px )
+  .rating
+    &__card
+      & .content
+        &__image
+          height: 300px
+        &__position
+          top: calc(300px - 40px)

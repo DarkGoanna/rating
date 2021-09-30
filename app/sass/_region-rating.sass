@@ -7,87 +7,11 @@
   &__title
     grid-area: title
   &__select
+    min-width: 200px
     &#sort
       grid-area: sort
     &#region
       grid-area: region
-    & .default-select
-      display: none
-      min-width: 100px
-      border-radius: 0
-      background: $dark
-      width: max-content
-      height: 40px
-      padding: 0 30px 0 8px
-      align-items: center
-      justify-content: center
-      color: $light
-      font-size: 16px
-    & .custom-select
-      position: relative
-      min-width: 200px
-      &__list
-        opacity: 0
-        visibility: hidden
-        transform: translateY(20px)
-        position: absolute
-        top: 100%
-        right: 0
-        width: max-content
-        z-index: 3
-        min-width: 200px
-        border: 1px solid $middle
-        max-height: 150px
-        overflow-y: scroll
-        background: #fff
-        &::-webkit-scrollbar
-          width: 3px
-          background: #fff
-        &::-webkit-scrollbar-track
-          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
-        &::-webkit-scrollbar-thumb
-          background: $dark
-          border-radius: 8px
-        & li
-          background: #fff
-          list-style: none
-          padding: 0 12px
-          min-height: 30px
-          display: flex
-          align-items: center
-          cursor: pointer
-          transition: .2s
-          &:not(:last-child)
-            border-bottom: 1px solid $middle
-          &:hover
-            background: $light
-            transition: .2s
-      &__btn
-        &.arrow
-          width: 100%
-          height: 100%
-          top: 0
-          left: 0
-          transform: translate(0)
-          &::before
-            left: auto
-            right: 15px
-            border-color: $light
-      &__output
-        min-width: 200px
-        background: $dark
-        width: max-content
-        height: 40px
-        padding: 0 30px 0 8px
-        display: flex
-        align-items: center
-        color: $light
-        &.open
-          & + .custom-select__list
-            opacity: 1
-            visibility: visible
-            transform: translateY(0)
-            transition: .2s
   &__content
     grid-area: content
     & .region-content
@@ -142,7 +66,6 @@
           background: $light
           & img,
           & source
-            display: block
             width: 100%
             height: 100%
             object-fit: cover
@@ -197,22 +120,3 @@
           &__th:nth-child(3),
           &__label
             display: none
-.ios
-  .region-rating
-    &__select
-      position: relative
-      &::before
-        content: ''
-        display: block
-        width: 5px
-        height: 5px
-        border-right: 1px solid $light
-        border-bottom: 1px solid $light
-        position: absolute
-        top: 35%
-        right: 15px
-        transform: rotate(45deg) translateY(-50%)
-      & .default-select
-        display: flex
-      & .custom-select
-        display: none

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__logo">
+                <a href="#" title="logo">
+                    <img loading="lazy" class="header__logo--desctop" src="img/logo-header.svg" alt="logo">
+                    <img loading="lazy" class="header__logo--mobile" src="img/logo-header-mobile.svg" alt="logo">
+                </a>
+            </div>
+            <nav class="header__menu">
+                <ul class="menu">
+                    <li class="has-children">
+                        <a href="#" title="О проекте">О проекте</a>
+                        <ul class="menu__submenu">
+                            <li><a href="#" title="О проекте">О проекте</a></li>
+                            <li><a href="#" title="Условия участия">Условия участия</a></li>
+                            <li><a href="#" title="Как мы голосуем">Как мы голосуем</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="Рейтинги">Рейтинги</a></li>
+                    <li><a href="#" title="Эксперты">Эксперты</a></li>
+                    <li><a href="#" title="Досье">Досье</a></li>
+                    <li><a href="#" title="Новости">Новости</a></li>
+                    <li><a href="#" title="Партнёры">Партнёры</a></li>
+                    <li><a href="#" title="Контакты">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header__burger">
+                <button class="burger delete-btn-style">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="header__language">
+                <div class="language">
+                    <div class="language__current has-arrow">
+                        <span class="language__active">ru</span>
+                        <button class="language__btn delete-btn-style arrow" type="button"></button>
+                    </div>
+                    <ul class="language__list">
+                        <li data-language="ru">ru</li>
+                        <li data-language="ua">ua</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header__search">
+                <div class="search">
+                    <button class="search__btn delete-btn-style">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5837 3.51256C12.5363 5.46518 12.5363 8.63101 10.5837 10.5836C8.63106 12.5363 5.46524 12.5363 3.51261 10.5836C1.55999 8.63101 1.55999 5.46518 3.51261 3.51256C5.46524 1.55994 8.63106 1.55994 10.5837 3.51256ZM11.854 10.6415C13.6159 8.2914 13.4281 4.94277 11.2908 2.80545C8.94764 0.462309 5.14865 0.462309 2.80551 2.80545C0.462361 5.1486 0.462361 8.94759 2.80551 11.2907C5.11662 13.6018 8.84404 13.6334 11.1939 11.3855C11.1989 11.391 11.204 11.3964 11.2093 11.4016L14.7448 14.9372C14.9401 15.1324 15.2567 15.1324 15.452 14.9372C15.6472 14.7419 15.6472 14.4253 15.452 14.2301L11.9164 10.6945C11.8968 10.6749 11.8759 10.6572 11.854 10.6415Z" fill="#252B42"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0">
+                            <rect width="18" height="18" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>                          
+                    </button>
+                    <div class="search__input-wrapper">
+                        <input class="search__input delete-btn-style" type="text" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumbs">
+        <div class="container">
+            <ul class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a href="/">Главная</a></li>
+                <li class="breadcrumbs__item"><a href="#">Рейтинги</a></li>
+                <li class="breadcrumbs__item current"><span>Рейтинг самых богатых людей Украины 2021г.</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="banner">
+        <div class="container">
+            <div class="banner__inner">
+                <div class="content timer" data-date="Sep 30, 2021 13:14:00">
+                    <span class="content__label">Бизнесс</span>
+                    <picture class="content__image">
+                        <img loading="lazy" src="img/banner.jpg" alt="">
+                    </picture>
+                    <div class="content__description">
+                        <div class="content__date">
+                            <span>Рейтинг - </span>
+                            <span>27 сентября 2021</span>
+                        </div>
+                        <div class="content__title t1">100 Самых богатых людей Украины 2021г.</div>
+                        <div class="content__subtitle t3">
+                            Hollywood actress Amanda Seyfried has recalled the time when she became obsessed with ghost stories
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rating" class="rating pt" data-category-id="10">
+      <div class="container">
+          <div class="rating__inner">
+              <div class="rating__title t2">Рейтинги</div>
+
+              <div class="rating__links decor-line">
+                <a href="" class="rating__link btn" data-current="false">
+                  <svg width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.15452 8.85652C9.38451 8.85652 11.1923 7.04876 11.1923 4.81876C11.1923 2.58877 9.38451 0.781006 7.15452 0.781006C4.92453 0.781006 3.11676 2.58877 3.11676 4.81876C3.11676 7.04876 4.92453 8.85652 7.15452 8.85652Z" fill="#0F63C7"/>
+                    <path d="M8.86701 9.13135H5.44112C2.59122 9.13135 0.272034 11.4503 0.272034 14.3007V18.4913L0.282587 18.5568L0.571518 18.6471C3.2915 19.4967 5.65501 19.7807 7.60036 19.7807C11.3994 19.7807 13.6018 18.697 13.7383 18.6283L14.008 18.4913H14.0363V14.3007C14.0366 11.4503 11.7179 9.13135 8.86701 9.13135ZM7.95214 17.2639L7.21293 18.3457C7.20285 18.3605 7.1869 18.3692 7.16931 18.3692C7.16884 18.3692 7.16837 18.3692 7.1679 18.3692C7.15055 18.3692 7.1339 18.36 7.12428 18.3448L6.4376 17.2622C6.43174 17.2531 6.42893 17.242 6.4294 17.2303L6.77297 11.9763C6.77485 11.9484 6.79759 11.9273 6.82574 11.9273H7.53845C7.56636 11.9273 7.58934 11.9484 7.59168 11.9763L7.96082 17.2298C7.96223 17.2423 7.95871 17.2538 7.95214 17.2639ZM7.61772 11.7683H6.77039L6.03376 10.2458C6.03376 10.0997 6.15196 9.98196 6.29806 9.98196H8.06706C8.2127 9.98196 8.3309 10.0997 8.3309 10.2458L7.61772 11.7683Z" fill="#0F63C7"/>
+                  </svg>
+                  <span class="rating__link-text">Эккспертное мнение</span>
+                </a>
+
+                <a href="/rating.html" class="rating__link btn"  data-current="false">
+                  <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.84286 2.90131C5.84286 1.35662 7.03262 0.104248 8.50028 0.104248C9.96752 0.104248 11.1573 1.35662 11.1573 2.90131C11.1573 4.44599 9.96752 5.69836 8.50028 5.69836C7.03262 5.69836 5.84286 4.44599 5.84286 2.90131ZM9.77711 7.604C9.80398 6.99503 10.0029 6.43123 10.3236 5.96502C10.0986 5.91546 9.86627 5.88915 9.62774 5.88915H7.37302C7.13532 5.88915 6.90304 5.91524 6.6793 5.96436C7.02033 6.46237 7.22449 7.07025 7.22782 7.72856C7.64197 7.48844 8.11758 7.35182 8.62298 7.35182C9.03297 7.35182 9.42316 7.44173 9.77711 7.604ZM10.2271 7.85487C10.9989 8.36428 11.5402 9.22632 11.6387 10.2269C11.9535 10.3818 12.3029 10.4708 12.6733 10.4708C14.0255 10.4708 15.1215 9.3171 15.1215 7.8939C15.1215 6.47049 14.0255 5.3168 12.6733 5.3168C11.3339 5.31702 10.2475 6.45009 10.2271 7.85487ZM8.62298 13.1317C9.97523 13.1317 11.0712 11.9775 11.0712 10.5543C11.0712 9.13136 9.97502 7.97745 8.62298 7.97745C7.27094 7.97745 6.17431 9.13136 6.17431 10.5543C6.17431 11.9778 7.27115 13.1317 8.62298 13.1317ZM9.66149 13.3071H7.58406C5.85557 13.3071 4.44937 14.7875 4.44937 16.6068V19.2812L4.45583 19.3229L4.63082 19.3808C6.28035 19.9231 7.71343 20.1042 8.89297 20.1042C11.1969 20.1042 12.5322 19.413 12.6145 19.3687L12.7781 19.2815H12.7956V16.6068C12.7962 14.7875 11.39 13.3071 9.66149 13.3071ZM13.7122 10.6469H11.6508C11.6285 11.5151 11.2764 12.2966 10.7196 12.8591C12.256 13.34 13.3801 14.8395 13.3801 16.6109V17.4353C15.4155 17.3565 16.5883 16.7493 16.6656 16.7087L16.8292 16.6215H16.8467V13.9463C16.8467 12.1271 15.4405 10.6469 13.7122 10.6469ZM4.32729 10.4708C4.80623 10.4708 5.25184 10.3239 5.62933 10.0732C5.74933 9.24934 6.1689 8.52941 6.76825 8.03907C6.77075 7.99083 6.77513 7.94302 6.77513 7.89434C6.77513 6.47092 5.67891 5.31723 4.32729 5.31723C2.97483 5.31723 1.87904 6.47092 1.87904 7.89434C1.87883 9.31732 2.97483 10.4708 4.32729 10.4708ZM6.52576 12.8591C5.97161 12.2997 5.62079 11.5219 5.59516 10.6594C5.51871 10.6535 5.44309 10.6469 5.36517 10.6469H3.28795C1.55946 10.6469 0.153259 12.1271 0.153259 13.9463V16.6208L0.159717 16.6623L0.334712 16.7201C1.658 17.1552 2.839 17.3554 3.8648 17.4188V16.6109C3.86522 14.8395 4.98914 13.34 6.52576 12.8591Z" fill="white"/>
+                  </svg>                    
+                  <span class="rating__link-text">Народное мнение</span>
+                </a>
+              </div>
+
+              <div class="rating__selects decor-line">
+
+                <!-- ОБЛАСТЬ -->
+                <div class="rating__select select-wrapper" id="rating-links">
+                  <!-- other devices -->
+                  <div class="custom-select">
+                      <div class="custom-select__output has-arrow">
+                          <span class="custom-select__value">Область</span>
+                          <button class="custom-select__btn delete-btn-style arrow" type="button"></button>
+                      </div>
+                      <ul class="custom-select__list">
+                        <li data-href="/novii-reiting/?lang=ua&sort=people&region=odeska">линк 1</li>
+                        <li data-href="/experts">линк 2</li>
+                      </ul>
+                  </div>
+              </div>
+
+              <!-- КАТЕГОРИЯ -->
+              <div class="rating__select select-wrapper" id="rating-links">
+                <!-- other devices -->
+                <div class="custom-select">
+                    <div class="custom-select__output has-arrow">
+                        <span class="custom-select__value">Категория</span>
+                        <button class="custom-select__btn delete-btn-style arrow" type="button"></button>
+                    </div>
+                    <ul class="custom-select__list">
+                        <li data-href="/novii-reiting/?lang=ua&sort=people&region=odeska">линк 1</li>
+                        <li data-href="/experts">линк 2</li>
+                    </ul>
+                </div>
+            </div>
+              </div>
+
+              <div class="rating__content decor-line">
+                <div class="rating__card">
+
+                  <div class="content">
+                    <picture class="content__image">
+                      <!-- <source srcset="img/rating-man.webp" type="image/webp"> -->
+                      <img loading="lazy" src="img/rating-man.jpg" alt="">
+                    </picture>
+
+                    <span class="content__position t2">4</span>
+                    <div class="content__label small">Наука и образование</div>
+                    <div class="content__title t2">
+                      <a href="#">Андрющенко Ірина</a>
+                      <button class="content__open content__switcher" type="button"></button>
+                    </div>
+
+                    <div class="content__description">
+                      <button class="content__close content__switcher" type="button"></button>
+                      <div class="content__title t2"><a href="#">Андрющенко Ірина</a></div>
+                      <div class="content__text">
+                        Депутат Харківської міської ради.директор КП «Комплекс з вивезення побутових відходів», б / п (фракція «Довіряй справам»)
+                      </div>
+                    </div>
+
+                    <div class="content__like like">
+                      <div class="like__text small">Рейтинг</div>
+                      <div class="like__count" data-pressed="false">
+                        <button class="like__btn" type="button">
+                          <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.5 9.88687C16.5 9.48622 16.3407 9.11287 16.066 8.83753C16.3773 8.49687 16.536 8.04018 16.4927 7.56487C16.4147 6.71753 15.6513 6.05353 14.754 6.05353H10.636C10.84 5.43418 11.1667 4.29887 11.1667 3.38687C11.1667 1.94087 9.938 0.720215 9.16666 0.720215C8.47466 0.720215 7.97931 1.11021 7.95866 1.12621C7.87931 1.18956 7.83331 1.28556 7.83331 1.38687V3.64753L5.91266 7.80687L5.83331 7.84753V7.72018C5.83331 7.53618 5.68397 7.38684 5.49997 7.38684H2.16666C1.24734 7.38687 0.5 8.13422 0.5 9.05353V14.3869C0.5 15.3062 1.24734 16.0535 2.16666 16.0535H4.16666C4.88731 16.0535 5.50331 15.5935 5.73531 14.9515C6.29 15.2369 7.03666 15.3869 7.5 15.3869H13.6193C14.3453 15.3869 14.9807 14.8975 15.13 14.2229C15.2067 13.8749 15.162 13.5249 15.01 13.2209C15.502 12.9735 15.8333 12.4649 15.8333 11.8869C15.8333 11.6509 15.7793 11.4249 15.6773 11.2209C16.1693 10.9729 16.5 10.4649 16.5 9.88687ZM15.094 10.7095C14.9653 10.7249 14.8567 10.8122 14.8153 10.9355C14.7747 11.0589 14.8087 11.1942 14.9033 11.2835C15.0727 11.4429 15.1667 11.6575 15.1667 11.8869C15.1667 12.3075 14.8487 12.6609 14.428 12.7095C14.2994 12.7249 14.1907 12.8122 14.1494 12.9355C14.1087 13.0589 14.1427 13.1942 14.2374 13.2835C14.4567 13.4902 14.5447 13.7802 14.4787 14.0789C14.3967 14.4509 14.0354 14.7202 13.6194 14.7202H7.5C6.95866 14.7202 6.05066 14.4662 5.736 14.1509C5.64066 14.0562 5.49666 14.0282 5.37266 14.0789C5.248 14.1302 5.16666 14.2522 5.16666 14.3869C5.16666 14.9382 4.718 15.3869 4.16666 15.3869H2.16666C1.61531 15.3869 1.16666 14.9382 1.16666 14.3869V9.05353C1.16666 8.50218 1.61531 8.05353 2.16666 8.05353H5.16666V8.38687C5.16666 8.50222 5.22666 8.60953 5.32531 8.67087C5.42266 8.72953 5.54531 8.73553 5.64931 8.68487L6.31597 8.35153C6.38331 8.31818 6.43731 8.26218 6.46931 8.19353L8.46931 3.86018C8.48931 3.81618 8.49997 3.76818 8.49997 3.72018V1.56753C8.63866 1.49087 8.87934 1.38687 9.16666 1.38687C9.532 1.38687 10.5 2.29487 10.5 3.38687C10.5 4.56021 9.86134 6.25153 9.85534 6.26822C9.81669 6.37021 9.83 6.48556 9.892 6.57621C9.95466 6.66621 10.0573 6.72022 10.1667 6.72022H14.754C15.31 6.72022 15.782 7.11822 15.8287 7.62622C15.864 8.00622 15.6813 8.36756 15.354 8.56956C15.252 8.63222 15.1913 8.74556 15.196 8.86621C15.2007 8.98687 15.27 9.09487 15.3767 9.15022C15.6587 9.29356 15.8333 9.57622 15.8333 9.88687C15.8333 10.3075 15.5153 10.6609 15.094 10.7095Z" fill="#828282"/>
+                          </svg>                            
+                        </button>
+                        <span>356</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+          </div>
+  </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__col">
+                    <div class="footer__logo">
+                        <div class="logo">
+                            <a href="#">
+                                <img src="img/logo-footer.svg" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer__description small">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque, pellentesque dictum posuere id diam rutrum.
+                        </p>
+                    </div>
+                    <div class="footer__socials">
+                        <div class="socials">
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="facebook">
+                                    <img src="img/Facebook.svg" alt="facebook">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="twitter">
+                                    <img src="img/Twitter.svg" alt="twitter">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="instagram">
+                                    <img src="img/Instagram.svg" alt="instagram">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="youtube">
+                                    <img src="img/Youtube.svg" alt="youtube">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__title t2">Меню</div>
+                    <div class="footer__col-inner decor-line">
+                        <nav class="footer__menu">
+                            <ul class="menu">
+                                <li><a href="#" title="О проекте">О проекте</a></li>
+                                <li><a href="#" title="Рейтинги">Рейтинги</a></li>
+                                <li><a href="#" title="Эксперты">Эксперты</a></li>
+                                <li><a href="#" title="Досье">Досье</a></li>
+                                <li><a href="#" title="Новости">Новости</a></li>
+                                <li><a href="#" title="Партнёры">Партнёры</a></li>
+                                <li><a href="#" title="Контакты">Контакты</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__title t2">Свяжись с нами</div>
+                    <div class="footer__col-inner decor-line">
+                        <div class="footer__callback">
+                            <div class="callback">
+                                <div class="callback__text small">
+                                    To be updated with all the latest news, offers and special annoucements.
+                                </div>
+                                <form action="" class="callback__form">
+                                    <input type="text" name="name" class="callback__input" placeholder="Ваше имя">
+                                    <input type="text" name="phone" class="callback__input" placeholder="Ваш e-mail">
+                                    <button type="submit" class="btn callback__btn">Отправить</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/ajaxLoader.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
