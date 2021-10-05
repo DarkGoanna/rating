@@ -81,7 +81,7 @@
           &__head,
           &__list li
             display: grid
-            grid-template-columns: 50px 1fr 100px
+            grid-template-columns: 50px 1fr 150px
 @media screen and ( max-width: 1000px )
   .region-rating
     &__content
@@ -109,6 +109,17 @@
           width: 100%
       & .default-select
         width: 100%
+@media screen and ( max-width: 580px )
+  .region-rating
+    &__content
+      & .region-content
+        & .region-table
+          &__head,
+          &__list li
+            grid-template-columns: 50px 1fr
+          &__th:nth-child(3),
+          &__label
+            display: none
 @media screen and ( max-width: 480px )
   .region-rating
     &__content

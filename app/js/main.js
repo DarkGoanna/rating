@@ -318,14 +318,15 @@ function renderRegionRating() {
         const sort = ratingWrapper.getAttribute('data-sort');
         const id = ratingWrapper.getAttribute('data-category-id');
         const count = 4;
+        const language = currentLanguage === 'ru' ? '' : '&lang=ua';
 
-        getRating(id, count, sort, region);
+        getRating(id, count, sort, region, language);
     }
 }
 
 // get rating
-function getRating(id, perPage, sort, region) {
-    let url = `${domain}/ajax/get_rating/${id}/?per_page=${perPage}&sort=${sort}&region=${region}`;
+function getRating(id, perPage, sort, region, language) {
+    let url = `${domain}/ajax/get_rating/${id}/?per_page=${perPage}&sort=${sort}&region=${region}${language}`;
 
     fetch(url)
         .then(response => response.text())
