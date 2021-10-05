@@ -4137,10 +4137,6 @@ textarea {
     font-size: 36px;
   }
 
-  .experts__card .content__image {
-    max-width: 100%;
-  }
-
   .news__inner {
     -ms-grid-columns: 1fr -webkit-max-content 60px;
     -ms-grid-columns: 1fr max-content 60px;

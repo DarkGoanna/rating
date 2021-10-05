@@ -1,4 +1,5 @@
 function ajaxCardLoad(url, config) {
+
   const wrapper = document.querySelector(config.containerName);
 
   // по сколько выводить
@@ -11,7 +12,7 @@ function ajaxCardLoad(url, config) {
   let startFrom = pagination;
 
   /* Используйте вариант $('#more').click(function() для того, чтобы дать пользователю возможность управлять процессом, кликая по кнопке "Дальше" под блоком статей (см. файл index.php) */
-  window.addEventListener('scroll', function ajaxLoadNew() {
+  $(window).scroll(function () {
     if (ended != true) {
       //$('#more').click(function(){
       /* Если высота окна + высота прокрутки больше или равны высоте всего документа и ajax-запрос в настоящий момент не выполняется, то запускаем ajax-запрос */
@@ -52,10 +53,5 @@ function ajaxCardLoad(url, config) {
         });
       }
     }
-  })
-
-  //остановка работы функции
-  return function stopAjaxLoad() {
-    inProgress = true;
-  }
+  });
 }

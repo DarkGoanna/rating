@@ -138,23 +138,44 @@
         margin-bottom: 8px
       &__text
         margin-bottom: 8px
-
+#newsPage
+  & .news__inner
+    grid-template-columns: 100%
+    grid-template-areas: 'title''box'
+  & .news__grid
+    display: grid
+    grid-area: box
+    grid-template-columns: repeat(3, 1fr)
+    grid-gap: 40px 85px
 @media screen and ( max-width: 1200px )
   .news
     &__slider
       & .swiper-wrapper
         grid-column-gap: 60px
+  #newsPage
+    & .news__grid
+      grid-gap: 40px 60px
 @media screen and ( max-width: 1000px )
   .news
     &__slider
       & .swiper-wrapper
         grid-column-gap: 30px
+  #newsPage
+    & .news__grid
+      grid-gap: 30px
+
+@media screen and ( max-width: 900px )
+  #newsPage
+    & .news__grid
+      grid-template-columns: 1fr 1fr
+
 @media screen and ( max-width: 768px )
   .news
     &__slider
       & .swiper-wrapper
         grid-template-columns: 100%
         grid-row-gap: 30px
+
 @media screen and ( max-width: 580px )
   .news
     &__inner
@@ -167,6 +188,9 @@
       & .swiper-wrapper
         display: flex
         grid-gap: 0
+  #newsPage
+    & .news__grid
+      grid-template-columns: 100%
 @media screen and ( max-width: 400px )
   .news
     &__title

@@ -1,7 +1,7 @@
 $dark: #333333
 $middle: #C4C4C4
 $light: #DFDFDF
-$active: #0C658B
+$active: #195ba7
 
 .t1, h1
   font-weight: 600
@@ -25,24 +25,32 @@ $active: #0C658B
   width: 270px
   height: 40px
   border-radius: 0px
-  background: $light
-  border: 1px solid $light
-  color: $dark
+  background: $dark
+  border: 1px solid $dark
+  color: #fff
   &:hover,
   &:active
-    background: $dark
-    color: $light
-    border-color: $light
+    background: transparent
+    border-color: #fff
     transition: .2s
   &--dark
-    background: $dark
+    background: $middle
     border-color: $dark
-    color: $light
+    color: $dark
     &:hover,
     &:active
-      background: $light
+      background: $dark
       border-color: $dark
+      color: #fff
+  &--v3
+    background: $dark
+    border-color: $dark
+    color: #fff
+    &:hover,
+    &:active
+      background: transparent
       color: $dark
+      border-color: $dark
 .container
   max-width: 1170px + (2 * 15px)
   padding: 0 15px

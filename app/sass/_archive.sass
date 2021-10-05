@@ -23,7 +23,7 @@
       cursor: pointer
       transition: .2s
       &.active
-        background: $light
+        color: $active
         font-weight: 600
         transition: .2s
   &__prev
@@ -83,7 +83,7 @@
         font-weight: 600
 #archive__page
   & .archive__content
-    grid-template-columns: repeat(4, 1fr)
+    grid-template-columns: repeat(3, 1fr)
     grid-gap: 30px 40px
 @media screen and ( max-width: 1000px )
   .active-ratings
@@ -94,10 +94,6 @@
   .archive
     &__content
       grid-gap: 40px
-  #archive__page
-    & .archive__content
-      grid-template-columns: repeat(3, 1fr)
-      grid-gap: 30px 40px
 
 @media screen and ( max-width: 1000px )
   .archive

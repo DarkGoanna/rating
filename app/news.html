@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__logo">
+                <a href="#" title="logo">
+                    <img loading="lazy" class="header__logo--desctop" src="img/logo-header.svg" alt="logo">
+                    <img loading="lazy" class="header__logo--mobile" src="img/logo-header-mobile.svg" alt="logo">
+                </a>
+            </div>
+            <nav class="header__menu">
+                <ul class="menu">
+                    <li class="has-children">
+                        <a href="#" title="О проекте">О проекте</a>
+                        <ul class="menu__submenu">
+                            <li><a href="#" title="О проекте">О проекте</a></li>
+                            <li><a href="#" title="Условия участия">Условия участия</a></li>
+                            <li><a href="#" title="Как мы голосуем">Как мы голосуем</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="Рейтинги">Рейтинги</a></li>
+                    <li><a href="#" title="Эксперты">Эксперты</a></li>
+                    <li><a href="#" title="Досье">Досье</a></li>
+                    <li><a href="#" title="Новости">Новости</a></li>
+                    <li><a href="#" title="Партнёры">Партнёры</a></li>
+                    <li><a href="#" title="Контакты">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header__burger">
+                <button class="burger delete-btn-style">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="header__language">
+                <div class="language">
+                    <div class="language__current has-arrow">
+                        <span class="language__active">ru</span>
+                        <button class="language__btn delete-btn-style arrow" type="button"></button>
+                    </div>
+                    <ul class="language__list">
+                        <li data-language="ru">ru</li>
+                        <li data-language="ua">ua</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header__search">
+                <div class="search">
+                    <button class="search__btn delete-btn-style">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5837 3.51256C12.5363 5.46518 12.5363 8.63101 10.5837 10.5836C8.63106 12.5363 5.46524 12.5363 3.51261 10.5836C1.55999 8.63101 1.55999 5.46518 3.51261 3.51256C5.46524 1.55994 8.63106 1.55994 10.5837 3.51256ZM11.854 10.6415C13.6159 8.2914 13.4281 4.94277 11.2908 2.80545C8.94764 0.462309 5.14865 0.462309 2.80551 2.80545C0.462361 5.1486 0.462361 8.94759 2.80551 11.2907C5.11662 13.6018 8.84404 13.6334 11.1939 11.3855C11.1989 11.391 11.204 11.3964 11.2093 11.4016L14.7448 14.9372C14.9401 15.1324 15.2567 15.1324 15.452 14.9372C15.6472 14.7419 15.6472 14.4253 15.452 14.2301L11.9164 10.6945C11.8968 10.6749 11.8759 10.6572 11.854 10.6415Z" fill="#252B42"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0">
+                            <rect width="18" height="18" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>                          
+                    </button>
+                    <div class="search__input-wrapper">
+                        <input class="search__input delete-btn-style" type="text" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="breadcrumbs">
+        <div class="container">
+            <ul class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a href="/">Главная</a></li>
+                <li class="breadcrumbs__item current"><span>Рейтинг самых богатых людей Украины 2021г.</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="newsPage" class="news">
+      <div class="container">
+        <div class="news__inner">
+          <div class="news__title t2">Новости</div>
+          <div class="news__grid decor-line">
+            <div class="news-card">
+                <div class="news__card">
+                    <div class="content">
+                        <span class="content__label small">Политика</span>
+                        <div class="content__image-wrapper">
+                            <picture class="content__image">
+                                <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                                <img loading="lazy" src="img/url.jpg" alt="">
+                            </picture>
+                            <a href="#" class="content__btn"></a>
+                        </div>
+                        <div class="content__description">
+                            <div class="content__date small">
+                                <span>Рейтинг - </span>
+                                <span>27 сентября 2021</span>
+                            </div>
+                            <div class="content__title t2">
+                                <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                            </div>
+                            <div class="content__text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news__card">
+                    <div class="content">
+                        <span class="content__label small">Политика</span>
+                        <div class="content__image-wrapper">
+                            <picture class="content__image">
+                                <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                                <img loading="lazy" src="img/url.jpg" alt="">
+                            </picture>
+                            <a href="#" class="content__btn"></a>
+                        </div>
+                        <div class="content__description">
+                            <div class="content__date small">
+                                <span>Рейтинг - </span>
+                                <span>27 сентября 2021</span>
+                            </div>
+                            <div class="content__title t2">
+                                <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                            </div>
+                            <div class="content__text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news__card">
+                    <div class="content">
+                        <span class="content__label small">Политика</span>
+                        <div class="content__image-wrapper">
+                            <picture class="content__image">
+                                <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                                <img loading="lazy" src="img/url.jpg" alt="">
+                            </picture>
+                            <a href="#" class="content__btn"></a>
+                        </div>
+                        <div class="content__description">
+                            <div class="content__date small">
+                                <span>Рейтинг - </span>
+                                <span>27 сентября 2021</span>
+                            </div>
+                            <div class="content__title t2">
+                                <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                            </div>
+                            <div class="content__text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+              <div class="news__card">
+                  <div class="content">
+                      <span class="content__label small">Политика</span>
+                      <div class="content__image-wrapper">
+                          <picture class="content__image">
+                              <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                              <img loading="lazy" src="img/url.jpg" alt="">
+                          </picture>
+                          <a href="#" class="content__btn"></a>
+                      </div>
+                      <div class="content__description">
+                          <div class="content__date small">
+                              <span>Рейтинг - </span>
+                              <span>27 сентября 2021</span>
+                          </div>
+                          <div class="content__title t2">
+                              <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                          </div>
+                          <div class="content__text">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="news-card">
+                <div class="news__card">
+                    <div class="content">
+                        <span class="content__label small">Политика</span>
+                        <div class="content__image-wrapper">
+                            <picture class="content__image">
+                                <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                                <img loading="lazy" src="img/url.jpg" alt="">
+                            </picture>
+                            <a href="#" class="content__btn"></a>
+                        </div>
+                        <div class="content__description">
+                            <div class="content__date small">
+                                <span>Рейтинг - </span>
+                                <span>27 сентября 2021</span>
+                            </div>
+                            <div class="content__title t2">
+                                <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                            </div>
+                            <div class="content__text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news__card">
+                    <div class="content">
+                        <span class="content__label small">Политика</span>
+                        <div class="content__image-wrapper">
+                            <picture class="content__image">
+                                <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                                <img loading="lazy" src="img/url.jpg" alt="">
+                            </picture>
+                            <a href="#" class="content__btn"></a>
+                        </div>
+                        <div class="content__description">
+                            <div class="content__date small">
+                                <span>Рейтинг - </span>
+                                <span>27 сентября 2021</span>
+                            </div>
+                            <div class="content__title t2">
+                                <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                            </div>
+                            <div class="content__text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+              <div class="news__card">
+                  <div class="content">
+                      <span class="content__label small">Политика</span>
+                      <div class="content__image-wrapper">
+                          <picture class="content__image">
+                              <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                              <img loading="lazy" src="img/url.jpg" alt="">
+                          </picture>
+                          <a href="#" class="content__btn"></a>
+                      </div>
+                      <div class="content__description">
+                          <div class="content__date small">
+                              <span>Рейтинг - </span>
+                              <span>27 сентября 2021</span>
+                          </div>
+                          <div class="content__title t2">
+                              <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                          </div>
+                          <div class="content__text">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="news-card">
+                <div class="news__card">
+                    <div class="content">
+                        <span class="content__label small">Политика</span>
+                        <div class="content__image-wrapper">
+                            <picture class="content__image">
+                                <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                                <img loading="lazy" src="img/url.jpg" alt="">
+                            </picture>
+                            <a href="#" class="content__btn"></a>
+                        </div>
+                        <div class="content__description">
+                            <div class="content__date small">
+                                <span>Рейтинг - </span>
+                                <span>27 сентября 2021</span>
+                            </div>
+                            <div class="content__title t2">
+                                <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                            </div>
+                            <div class="content__text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news__card">
+                    <div class="content">
+                        <span class="content__label small">Политика</span>
+                        <div class="content__image-wrapper">
+                            <picture class="content__image">
+                                <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                                <img loading="lazy" src="img/url.jpg" alt="">
+                            </picture>
+                            <a href="#" class="content__btn"></a>
+                        </div>
+                        <div class="content__description">
+                            <div class="content__date small">
+                                <span>Рейтинг - </span>
+                                <span>27 сентября 2021</span>
+                            </div>
+                            <div class="content__title t2">
+                                <a href="#">Being self-controlled child may lead to healthier middle-age</a>
+                            </div>
+                            <div class="content__text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus lobortis augue condimentum maecenas. Metus at in fames vitae posuere ut vel vulputate...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+  </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__col">
+                    <div class="footer__logo">
+                        <div class="logo">
+                            <a href="#">
+                                <img src="img/logo-footer.svg" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer__description small">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque, pellentesque dictum posuere id diam rutrum.
+                        </p>
+                    </div>
+                    <div class="footer__socials">
+                        <div class="socials">
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="facebook">
+                                    <img src="img/Facebook.svg" alt="facebook">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="twitter">
+                                    <img src="img/Twitter.svg" alt="twitter">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="instagram">
+                                    <img src="img/Instagram.svg" alt="instagram">
+                                </a>
+                            </div>
+                            <div class="socials__item">
+                                <a href="#" target="_blank" title="youtube">
+                                    <img src="img/Youtube.svg" alt="youtube">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__title t2">Меню</div>
+                    <div class="footer__col-inner decor-line">
+                        <nav class="footer__menu">
+                            <ul class="menu">
+                                <li><a href="#" title="О проекте">О проекте</a></li>
+                                <li><a href="#" title="Рейтинги">Рейтинги</a></li>
+                                <li><a href="#" title="Эксперты">Эксперты</a></li>
+                                <li><a href="#" title="Досье">Досье</a></li>
+                                <li><a href="#" title="Новости">Новости</a></li>
+                                <li><a href="#" title="Партнёры">Партнёры</a></li>
+                                <li><a href="#" title="Контакты">Контакты</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__title t2">Свяжись с нами</div>
+                    <div class="footer__col-inner decor-line">
+                        <div class="footer__callback">
+                            <div class="callback">
+                                <div class="callback__text small">
+                                    To be updated with all the latest news, offers and special annoucements.
+                                </div>
+                                <form action="" class="callback__form">
+                                    <input type="text" name="name" class="callback__input" placeholder="Ваше имя">
+                                    <input type="text" name="phone" class="callback__input" placeholder="Ваш e-mail">
+                                    <button type="submit" class="btn callback__btn">Отправить</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/ajaxLoader.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

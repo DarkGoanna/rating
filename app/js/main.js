@@ -69,6 +69,7 @@ function openSubmenu(btn) {
 // закрыть меню
 function closeMenu() {
     menu.classList.remove('open');
+    burger.classList.remove('open');
 }
 
 // закрыть все подменю
@@ -210,7 +211,7 @@ if (seo) {
     const minHeight = Number.parseInt(e.style.getPropertyValue('--height'));
 
     if (e.scrollHeight > minHeight) {
-        e.parentElement.insertAdjacentHTML("beforeend", '<button type="button" class="seo__btn btn"></button>');
+        e.parentElement.insertAdjacentHTML("beforeend", '<button type="button" class="seo__btn btn btn--v3"></button>');
         const t = document.querySelector(".seo__btn");
 
         e.classList.add("less");
@@ -502,15 +503,74 @@ function initLike(parent) {
     container.addEventListener('click', event => {
         event.stopPropagation()
         const target = event.target;
+
         if (target.classList.contains('like__btn')) {
             const wrapper = target.closest('.like__count');
+            const article_id = target.getAttribute('article_id');
+            const category_id = target.getAttribute('category_id');
+
             if (wrapper.getAttribute('data-pressed') === 'false') {
                 wrapper.setAttribute('data-pressed', 'true');
                 const count = target.nextElementSibling;
                 count.textContent = ++count.textContent;
             }
+            if (article_id && category_id) {
+                let url = `${domain}/ajax/voites/voite/`;
+                url = currentLanguage === 'ru' ? url : url + '?lang=ua';
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        'article_id': article_id,
+                        'category_id': category_id
+                    },
+                    dataType: 'html',
+                    success: function (data) {
+                        const response = JSON.parse(data)
+
+                        switch (response.type) {
+                            case 'auth':
+                                initAutorization(response.message);
+                                break;
+                            case 'notify':
+                                initInfoMassage(response.message)
+                                break;
+                            case 'error':
+                                initInfoMassage(response.message, 'error')
+                                break;
+                        }
+
+                    },
+                    error: function (data) {
+                        alert('Ошибка ajax');
+                    }
+                })
+            }
         }
     })
+}
+
+// autorization
+function initAutorization(massege) {
+    const wrapper = document.querySelector('.popup');
+    const popup = wrapper.querySelector('.popup__inner');
+    const btn = wrapper.querySelector('.popup__close');
+    wrapper.querySelector('.popup__text').textContent = massege;
+
+    wrapper.classList.add('open');
+    setTimeout(() => { popup.classList.add('open') }, 400)
+    html.classList.add('scrollOff');
+
+    wrapper.addEventListener('click', event => {
+        const target = event.target;
+        if (target.classList.contains('popup') || target.classList.contains('popup__close')) {
+            popup.classList.remove('open');
+            setTimeout(() => { wrapper.classList.remove('open') }, 400)
+            html.classList.remove('scrollOff');
+        }
+    })
+
 }
 
 // timer
@@ -623,18 +683,81 @@ function initRating() {
             }
         })
 
-        let url = null;
         const id = rating.getAttribute('data-category-id');
 
-        if (!window.location.pathname) {
-            url = `${domain}/ajax/get_products/${id}/`;
-        } else {
-            const pathname = window.location.pathname;
-            // const tail = pathname.split('').slice(pathname.indexOf('/', 1)).join('');
-            const tail = '/?region=odeska&sort=people';
-            url = `${domain}/ajax/get_products/${id}${tail}`;
+        let url = window.location.href;
+        const tailPosition = url.indexOf('?');
+        const tail = tailPosition ? url.slice(tailPosition) : '/';
+        // const tail = '/?region=odeska&sort=people';
+        url = `${domain}/ajax/get_products/${id}/${tail}`;
+
+        const isActiveRating = Boolean(rating.getAttribute('active-rating'));
+        const isHasSort = tail.includes('sort=');
+        const showPosition = (isActiveRating && isHasSort && tail !== '/') ? true : false;
+        console.log(isActiveRating, isHasSort, tail !== '/');
+
+        const config = {
+            containerName: '.rating__content',
+            categoryID: id,
+            showPosition: showPosition,
+            createCard(data, wrapper, startFrom) {
+                // const arr = JSON.parse(data);
+                data.forEach((person, i) => {
+                    const url = person.url;
+                    const name = person.name;
+                    const image = person.image ? person.image : '';
+                    const webp = person.webp ? person.webp : '';
+                    const position = startFrom + ++i;
+                    const absentLable = currentLanguage === 'ru' ? 'Без категории' : 'Без категорії';
+                    const lable = person.nomination.name ? person.nomination.name : absentLable;
+                    const text = person.dolgnost ? person.dolgnost : '';
+                    const voites = person.voites ? person.voites : '';
+                    const articleID = person.product_id;
+                    const pressed = Boolean(person.voited);
+
+                    wrapper.insertAdjacentHTML(
+                        'beforeend', `<div class="rating__card">
+                        <div class="content">
+                        <picture class="content__image">
+                            <source srcset="${webp}" type="image/webp">
+                            <img loading="lazy" src="${image}" alt="">
+                        </picture>
+            
+                        ${showPosition ? `<span class="content__position t2">${position}</span>` : ''}
+                        <div class="content__label small">${lable}</div>
+                        <div class="content__title t2">
+                            <a href="${url}">${name}</a>
+                            <button class="content__open content__switcher" type="button"></button>
+                        </div>
+            
+                        <div class="content__description">
+                            <button class="content__close content__switcher" type="button"></button>
+                            <div class="content__title t2"><a href="${url}">${name}</a></div>
+                            <div class="content__text">${text}</div>
+                        </div>
+            
+                        <div class="content__like like">
+                            <div class="like__text small">Рейтинг</div>
+                            <div class="like__count" data-pressed="${pressed}">
+                            <button class="like__btn rate" type="button" article_id="${articleID}" category_id="${config.categoryID}">
+                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.5 9.88687C16.5 9.48622 16.3407 9.11287 16.066 8.83753C16.3773 8.49687 16.536 8.04018 16.4927 7.56487C16.4147 6.71753 15.6513 6.05353 14.754 6.05353H10.636C10.84 5.43418 11.1667 4.29887 11.1667 3.38687C11.1667 1.94087 9.938 0.720215 9.16666 0.720215C8.47466 0.720215 7.97931 1.11021 7.95866 1.12621C7.87931 1.18956 7.83331 1.28556 7.83331 1.38687V3.64753L5.91266 7.80687L5.83331 7.84753V7.72018C5.83331 7.53618 5.68397 7.38684 5.49997 7.38684H2.16666C1.24734 7.38687 0.5 8.13422 0.5 9.05353V14.3869C0.5 15.3062 1.24734 16.0535 2.16666 16.0535H4.16666C4.88731 16.0535 5.50331 15.5935 5.73531 14.9515C6.29 15.2369 7.03666 15.3869 7.5 15.3869H13.6193C14.3453 15.3869 14.9807 14.8975 15.13 14.2229C15.2067 13.8749 15.162 13.5249 15.01 13.2209C15.502 12.9735 15.8333 12.4649 15.8333 11.8869C15.8333 11.6509 15.7793 11.4249 15.6773 11.2209C16.1693 10.9729 16.5 10.4649 16.5 9.88687ZM15.094 10.7095C14.9653 10.7249 14.8567 10.8122 14.8153 10.9355C14.7747 11.0589 14.8087 11.1942 14.9033 11.2835C15.0727 11.4429 15.1667 11.6575 15.1667 11.8869C15.1667 12.3075 14.8487 12.6609 14.428 12.7095C14.2994 12.7249 14.1907 12.8122 14.1494 12.9355C14.1087 13.0589 14.1427 13.1942 14.2374 13.2835C14.4567 13.4902 14.5447 13.7802 14.4787 14.0789C14.3967 14.4509 14.0354 14.7202 13.6194 14.7202H7.5C6.95866 14.7202 6.05066 14.4662 5.736 14.1509C5.64066 14.0562 5.49666 14.0282 5.37266 14.0789C5.248 14.1302 5.16666 14.2522 5.16666 14.3869C5.16666 14.9382 4.718 15.3869 4.16666 15.3869H2.16666C1.61531 15.3869 1.16666 14.9382 1.16666 14.3869V9.05353C1.16666 8.50218 1.61531 8.05353 2.16666 8.05353H5.16666V8.38687C5.16666 8.50222 5.22666 8.60953 5.32531 8.67087C5.42266 8.72953 5.54531 8.73553 5.64931 8.68487L6.31597 8.35153C6.38331 8.31818 6.43731 8.26218 6.46931 8.19353L8.46931 3.86018C8.48931 3.81618 8.49997 3.76818 8.49997 3.72018V1.56753C8.63866 1.49087 8.87934 1.38687 9.16666 1.38687C9.532 1.38687 10.5 2.29487 10.5 3.38687C10.5 4.56021 9.86134 6.25153 9.85534 6.26822C9.81669 6.37021 9.83 6.48556 9.892 6.57621C9.95466 6.66621 10.0573 6.72022 10.1667 6.72022H14.754C15.31 6.72022 15.782 7.11822 15.8287 7.62622C15.864 8.00622 15.6813 8.36756 15.354 8.56956C15.252 8.63222 15.1913 8.74556 15.196 8.86621C15.2007 8.98687 15.27 9.09487 15.3767 9.15022C15.6587 9.29356 15.8333 9.57622 15.8333 9.88687C15.8333 10.3075 15.5153 10.6609 15.094 10.7095Z" fill="#828282"/>
+                                </svg>                            
+                            </button>
+                            <span>${voites}</span>
+                            </div>
+                        </div>
+            
+                        </div>
+            
+                    </div>`
+                    );
+                })
+            }
         }
-        ajaxCardLoad(url, '.rating__content', id)
+
+        ajaxCardLoad(url, config)
+
     }
 }
 
@@ -642,16 +765,132 @@ function initRating() {
 function initAlphabet() {
     const participants = document.querySelector('#participants');
     if (participants) {
-        const alphabet = participants.querySelector('.alphabet');
-        const letersRU = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Э', 'Ю', 'Я'];
-        const letersUA = ['А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ю', 'Я'];
-        const currentArray = currentLanguage === 'ru' ? letersRU : letersUA;
+        const leters = {
+            letersRU: ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Э', 'Ю', 'Я'],
+            letersUA: ['А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ю', 'Я'],
+        }
+        const config = {
+            containerName: '.experts__content',
+            createCard(data, wrapper, count = data.length) {
+                // определяем количество карточек
+                const maxLength = 20;
+                count = data.length < count ? data.length : count;
+                count = count <= maxLength ? count : maxLength;
+
+                // добавляем новые карточки
+                for (let i = 0; i < count; i++) {
+                    let person = data[i];
+                    const url = person.url;
+                    const name = person.name;
+                    const image = person.image ? person.image : '';
+                    const webp = person.webp ? person.webp : '';
+                    const lable = person.nomination.name ? person.nomination.name : '';
+                    const position = person.dolgnost ? person.dolgnost : '';
+
+                    wrapper.insertAdjacentHTML(
+                        'beforeend', `<div class="experts__card">
+                            <div class="content">
+                                <picture class="content__image">
+                                    <source srcset="${webp}" type="image/webp">
+                                    <img loading="lazy" src="${image}" alt="">
+                                </picture>
+                                <div class="content__description">
+                                    <span class="content__label small">${lable}</span>
+                                    <div class="content__title t2">
+                                        <a href="${url}">${name}</a>
+                                    </div>
+                                    <div class="content__text small">${position}</div>
+                                </div>
+                            </div>
+                        </div>`
+                    )
+                }
+            }
+        }
+        const type = participants.getAttribute('data-type');
+        const currentArray = currentLanguage === 'ru' ? leters.letersRU : leters.letersUA;
+
+        const alphabet = document.createElement('ul');
+        alphabet.className = 'alphabet';
+
+        // добавляем алфавит на страницу
+        currentArray.forEach(leter => {
+            const li = document.createElement('li');
+            li.textContent = leter;
+            li.setAttribute('data-leter', leter);
+            alphabet.append(li)
+        })
+        participants.querySelector('.experts__alphabet').prepend(alphabet);
+
+        // при загрузке страницы - сервер выводит людей по всем буквам, активирум только ленивую дозагрузку
+        const language = (currentLanguage === 'ru') ? '' : `?lang=${currentLanguage}`;
+        const url = `${domain}/ajax/get_alpha/${type}/${language}`;
+        //кладем в переменную stopAjaxLoad - замыкание на остановку 
+        let stopAjaxLoad = ajaxCardLoad(url, config);
+
+        // при клике на букву -  стераем все карточки что были, генерируем новые в определенном количестве
+        alphabet.addEventListener('click', event => {
+            const target = event.target;
+            stopAjaxLoad();
+
+            if (target.hasAttribute('data-leter')) {
+                // добавление класса активной букве
+                const current = alphabet.querySelector('li.current');
+                if (current) {
+                    current.classList.remove('current');
+                }
+                target.classList.add('current');
+
+                const currentLetter = target.getAttribute('data-leter');
+                const language = (currentLanguage === 'ru') ? '' : `&lang=${currentLanguage}`;
+                const startLoadFrom = 0;
+                const cardCount = 20;
+                const url = `${domain}/ajax/get_alpha/${type}/${currentLetter}/?per_page=${cardCount}&from=${startLoadFrom}${language}`;
+
+                fetch(url)
+                    .then(response => response.text())
+                    .then(str => JSON.parse(str))
+                    .then(arr => {
+                        const wrapper = document.querySelector(config.containerName);
+                        // делаем очистку от старых карточек
+                        wrapper.textContent = '';
+
+                        // загружаем новые
+                        config.createCard(arr, wrapper, 20)
+                    })
+
+                // делаем новую ленивую загрузку, и кладем в переменную stopAjaxLoad - замыкание на остановку 
+                stopAjaxLoad = ajaxCardLoad(url, config);
+            }
+        })
     }
+}
+
+// info massage
+function initInfoMassage(massage, type = 'info') {
+    const wrapper = document.querySelector('.info-alert__wrapper');
+    const card = document.createElement('div');
+    card.className = `info-alert ${type} open`;
+    card.insertAdjacentHTML('beforeend', '<button class="info-alert__close" type="button"></button>');
+    card.insertAdjacentHTML('beforeend', `<p class="info-alert__text small">${massage}</p>`);
+
+    wrapper.append(card);
+    setTimeout(() => { card.classList.remove('open') }, 2000)
+    setTimeout(() => card.remove(), 2200);
+
+    card.addEventListener('click', event => {
+        const target = event.target;
+        if (target.classList.contains('info-alert__close')) {
+            const card = target.closest('.info-alert')
+            card.classList.remove('open');
+            setTimeout(() => card.remove(), 200);
+        }
+    })
 }
 
 // при загрузке
 window.addEventListener('load', () => {
-    isMobile = window.matchMedia(`(max - width: ${desktopBreakpoint}px)`).matches;
+    isMobile = window.matchMedia(`(max-width: ${desktopBreakpoint}px)`).matches;
     currentLanguage = html.getAttribute('lang');
     fixHeaderHeight();
     addButtonComeback();
@@ -668,11 +907,12 @@ window.addEventListener('load', () => {
     initTimer();
     checkRatingLinks();
     initRating();
+    initAlphabet();
 });
 
 // при ресайзе
 window.addEventListener('resize', () => {
-    isMobile = window.matchMedia(`(max - width: ${desktopBreakpoint}px)`).matches;
+    isMobile = window.matchMedia(`(max-width: ${desktopBreakpoint}px)`).matches;
     if (!isMobile) {
         closeMenu();
         resetSubmenuPosition();

@@ -1,0 +1,106 @@
+.open-news
+  &__inner
+    display: grid
+    grid-template-columns: 1fr 280px
+    grid-gap: 20px 40px
+    position: relative
+    &.content
+      padding: 0
+      & .content
+        &__text
+          grid-column: 1/3
+        &__banner
+          margin-bottom: 30px
+          & img
+            display: block
+            width: 100%
+            object-fit: cover
+        &__title
+          margin-bottom: 15px
+        &__text
+          & p
+            &:not(:last-child)
+              margin-bottom: 15px
+  &__last-news
+    grid-row: 1/3
+    grid-column: 2/3
+    & .last-news
+      &__inner
+        grid-template-columns: 100%
+      &__card
+        &:nth-last-child(1),
+        &:nth-last-child(2)
+          display: block
+  &__footer
+    margin-top: 30px
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &__meta
+    display: flex
+    align-items: center
+    gap: 20px
+  &__date
+    position: relative
+    display: flex
+    align-items: center
+    gap: 8px
+    &::after
+      content: ''
+      height: 100%
+      width: 1px
+      background: $middle
+      position: absolute
+      top: 0
+      right: -10px
+  &__share
+    display: flex
+    align-items: center
+    gap: 20px
+@media screen and ( max-width: 1000px )
+  .open-news
+    &__inner
+      grid-template-columns: 100%
+      &.content
+        & .content
+          &__banner
+            height: max-content
+          &__text
+            grid-column: 1/-1
+    &__last-news
+      grid-row: auto
+      grid-column: auto
+      display: grid
+      grid-column: 1/-1
+      & .last-news
+        &__inner
+          grid-template-columns: 1fr 1fr
+    &__footer
+      flex-direction: column
+      align-items: flex-end
+      text-align: right
+    &__meta
+      flex-direction: column
+      align-items: flex-end
+      gap: 0
+      &::after
+        content: none
+    &__share
+      margin-top: 10px
+    &__banner
+
+@media screen and ( max-width: 768px )
+  .open-news
+    &__inner
+      grid-template-columns: 100%
+      &.content
+        & .content
+          &__banner
+            margin-bottom: 0
+          &__title
+            margin-bottom: 0
+            font-size: 18px
+    &__last-news
+      & .last-news
+        &__inner
+          grid-template-columns: 100%

@@ -85,16 +85,12 @@
         </div>
     </section>
 
-    <section id="participants" class="experts">
+    <section id="participants" class="experts" data-type="experts">
       <div class="container">
           <div class="experts__inner">
               <div class="experts__title t2">Досье участников</div>
-              <a href="" class="experts__reset btn btn--dark" type="button">показать всех </a>
+              <a href="" class="experts__reset btn btn--v3" type="button">показать всех </a>
               <div class="experts__alphabet alphabet decor-line">
-                <ul class="alphabet">
-                  <li>а</li>
-                  <li>б</li>
-                </ul>
               </div>
               <div class="experts__content">
                 <div class="experts__card">
@@ -182,6 +178,23 @@
                       </div>
                   </div>
                 </div>
+                <div class="experts__card">
+                    <div class="content">
+                        <picture class="content__image">
+                            <!-- <source srcset="img/url.webp" type="image/webp"> -->
+                            <img loading="lazy" src="img/url.jpg" alt="">
+                        </picture>
+                        <div class="content__description">
+                            <span class="content__label small">Политика</span>
+                            <div class="content__title t2">
+                                <a href="#">Андрєєв Сергій</a>
+                            </div>
+                            <div class="content__text small">
+                                Президент Magic Box Association Культура
+                            </div>
+                        </div>
+                    </div>
+                  </div>
               </div>
               </div>
           </div>
@@ -264,6 +277,36 @@
             </div>
         </div>
     </footer>
+
+    <div class="popup">
+        <div class="popup__inner">
+            <button class="popup__close" type="button"></button>
+            <div class="popup__title">Авторизация</div>
+            <p class="popup__text small">
+                Чтобы проголосовать за участника, пожалуйста, авторизируйтесь через ваш аккаунт 
+            </p>
+            <div class="popup__links">
+                <a href="" class="popup__link facebook t2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.5181 11.6853C23.5181 5.33399 18.3693 0.185272 12.0181 0.185272C5.66679 0.185272 0.518066 5.33399 0.518066 11.6853C0.518066 17.4253 4.72345 22.1828 10.2212 23.0456V15.0095H7.30127V11.6853H10.2212V9.15168C10.2212 6.26949 11.9381 4.67746 14.5649 4.67746C15.8231 4.67746 17.1392 4.90207 17.1392 4.90207V7.73215H15.689C14.2605 7.73215 13.8149 8.61861 13.8149 9.52806V11.6853H17.0044L16.4945 15.0095H13.8149V23.0456C19.3127 22.1828 23.5181 17.4253 23.5181 11.6853Z" fill="white"/>
+                    </svg>                                           
+                    <span>Вход черз Facebook</span>
+                </a>
+                <a href="" class="popup__link google t2">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" transform="translate(0.527344 0.0454712)" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M23.5673 12.3069C23.5673 11.4914 23.4942 10.7073 23.3583 9.95459H12.5273V14.403H18.7164C18.4498 15.8405 17.6396 17.0585 16.4217 17.8739V20.7594H20.1383C22.3128 18.7573 23.5673 15.8091 23.5673 12.3069Z" fill="#4285F4"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5273 23.5453C15.6323 23.5453 18.2355 22.5155 20.1382 20.7591L16.4216 17.8737C15.3919 18.5637 14.0746 18.9714 12.5273 18.9714C9.53208 18.9714 6.99685 16.9485 6.09253 14.2303H2.25049V17.2098C4.14276 20.9682 8.03185 23.5453 12.5273 23.5453Z" fill="#34A853"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.09257 14.2305C5.86257 13.5405 5.73189 12.8035 5.73189 12.0455C5.73189 11.2876 5.86257 10.5505 6.09257 9.86053V6.88098H2.25053C1.47166 8.43348 1.02734 10.1898 1.02734 12.0455C1.02734 13.9012 1.47166 15.6576 2.25053 17.2101L6.09257 14.2305Z" fill="#FBBC05"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5273 5.11933C14.2157 5.11933 15.7316 5.69956 16.9234 6.83911L20.2219 3.5407C18.2303 1.68502 15.6271 0.545471 12.5273 0.545471C8.03185 0.545471 4.14276 3.12252 2.25049 6.88093L6.09253 9.86047C6.99685 7.14229 9.53208 5.11933 12.5273 5.11933Z" fill="#EA4335"/>
+                    </svg>                        
+                    <span>Вход через Google</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-alert__wrapper"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/ajaxLoader.js"></script>
