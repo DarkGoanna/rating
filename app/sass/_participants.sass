@@ -16,6 +16,7 @@
     &__reset
       width: max-content
       padding: 0 15px
+      min-width: 200px
 @media screen and ( max-width: 1200px )
   #participants
     & .experts
@@ -42,3 +43,10 @@
     & .experts
       &__content
         grid-template-columns: 100%
+      &__inner
+        grid-template-columns: 100%
+        grid-template-areas: 'title''arrows''slider'
+      &__title
+        margin-bottom: 20px
+      &__reset
+        margin-left: auto

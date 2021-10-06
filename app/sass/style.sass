@@ -44,8 +44,8 @@ input, textarea
   font-family: inherit, sans-serif
 
 .swiper-button-next, .swiper-button-prev
-  width: 24px
-  height: 24px
+  width: 40px
+  height: 40px
   background: $dark
   &::after
     content: ''
@@ -60,6 +60,38 @@ input, textarea
 .swiper-button-prev
   &::after
     transform: translate(-25%, -50%) rotate(135deg)
+
+#scrollToTop
+  position: fixed
+  right: 15px
+  bottom: 15px
+  width: 40px
+  height: 40px
+  border-radius: 8px
+  background: $dark
+  cursor: pointer
+  border: none
+  opacity: 0
+  visibility: hidden
+  z-index: 1000
+  transition: .2s
+  transform: translateY(20px)
+  &::before
+    content: ''
+    width: 10px
+    height: 10px
+    border-right: 2px solid #fff
+    border-bottom: 2px solid #fff
+    transition: .3s
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -30%) rotate(225deg)
+  &.show
+    opacity: 1
+    visibility: visible
+    transition: .3s
+    transform: translateY(0)
 
 @import 'header'
 @import 'banner'
@@ -89,3 +121,5 @@ input, textarea
 @import 'info-alert'
 @import 'open-news'
 @import 'conditions'
+@import 'contacts'
+@import 'map'

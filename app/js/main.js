@@ -111,23 +111,6 @@ function isApple() {
         (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
 }
 
-// language
-function languageSwitcher() {
-    language.addEventListener('click', event => {
-        const target = event.target;
-        if (target.hasAttribute('data-language')) {
-            const output = language.querySelector('.language__active');
-            const languageValue = target.getAttribute('data-language');
-
-            output.parentElement.classList.remove('open')
-            output.textContent = languageValue;
-            html.setAttribute('lang', languageValue);
-            currentLanguage = languageValue;
-            reRender();
-        }
-    })
-}
-
 // active-ratings
 const activeRatings = document.querySelector('.active-ratings__slider');
 if (activeRatings) {
@@ -205,8 +188,8 @@ const news = SliderOnMobile('.news__slider', '.news__prev', '.news__next');
 // btn "read more" in section seo
 const seo = document.querySelector(".seo");
 if (seo) {
-    const less = 'Свернуть';
-    const more = 'Подробнее';
+    const less = currentLanguage === 'ru' ? 'Свернуть' : 'Згорнути';
+    const more = currentLanguage === 'ru' ? 'Подробнее' : 'Детальніше';
     const e = document.querySelector(".seo__text");
     const minHeight = Number.parseInt(e.style.getPropertyValue('--height'));
 
@@ -407,6 +390,7 @@ if (partners) {
 // archive
 const activeYears = document.querySelector('.archive__years');
 if (activeYears) {
+
     // slider for year buttons
     new Swiper(activeYears, {
         slidesPerView: 3,
@@ -421,25 +405,23 @@ if (activeYears) {
     const activeButton = activeYears.querySelector('.swiper-slide-active');
     activeButton.classList.add('active');
 
-    const count = 2;
+    const count = 4;
     let id = activeYears.closest('.archive').getAttribute('id');
     let year = activeButton.getAttribute('data-year');
     let lang = html.getAttribute('lang');
     let language = (lang !== 'ru') ? `lang=${lang}` : '';
     let url = `${domain}/ajax/get_ratings`;
 
-    async function callArchiveRender() {
+    function callArchiveRender(count, id, year, language, url) {
         if (id === 'archive__page') {
             url = language ? `${url}/${year}/?${language}` : `${url}/${year}/`;
-            await renderArchive(url);
-            await initPagination('#archive__page .archive__content', '.archive__card', 12);
         } else {
             url = language ? `${url}/${year}/?${language}&per_page=${count}` : `${url}/${year}/?per_page=${count}`;
-            renderArchive(url);
         }
+        renderArchive(url);
     }
 
-    callArchiveRender();
+    callArchiveRender(count, id, year, language, url);
 
     // load new data on click
     activeYears.addEventListener('click', event => {
@@ -449,14 +431,13 @@ if (activeYears) {
             target.classList.add('active');
 
             // update this variables
-            id = target.closest('.archive').getAttribute('id');
             year = target.getAttribute('data-year');
             lang = html.getAttribute('lang');
             language = (lang === 'ru') ? '' : `lang=${lang}`;
             url = `${domain}/ajax/get_ratings`;
 
             // on "archive__page" we will load all cards / on other only 2 card
-            callArchiveRender();
+            callArchiveRender(count, id, year, language, url);
         }
     });
 }
@@ -474,19 +455,19 @@ function renderArchive(url) {
                 const name = archive.name;
                 const image = archive.image ? archive.image : '';
                 const webp = archive.webp ? archive.webp : '';
-                const label = archive.label ? archive.label : '';
-                const date = archive.date ? archive.date : '';
+                const dateStart = archive.date_start ? archive.date_start : '';
+                const dateEnd = archive.date_end ? archive.date_end : '';
 
                 wrapper.insertAdjacentHTML('beforeend', `<div class="archive__card">
                 <div class="content">
-                    ${label ? `<span class="content__label small">${label}</span>` : ''}
                     <picture class="content__image">
                         <source srcset="${webp}" type="image/webp">
                         <img loading="lazy" src="${image}" alt="${name}">
                     </picture>
                     <div class="content__description">
                         <div class="content__date">
-                            <span>${date}</span>
+                            <p>${dateStart}</p>
+                            <p>${dateEnd}</p>
                         </div>
                         <div class="content__title t2">
                             <a href="${url}">${name}</a>
@@ -517,7 +498,7 @@ function initLike(parent) {
             }
             if (article_id && category_id) {
                 let url = `${domain}/ajax/voites/voite/`;
-                url = currentLanguage === 'ru' ? url : url + '?lang=ua';
+                url = (currentLanguage === 'ru') ? url : `${url}?lang=ua`;
 
                 $.ajax({
                     type: "POST",
@@ -541,7 +522,6 @@ function initLike(parent) {
                                 initInfoMassage(response.message, 'error')
                                 break;
                         }
-
                     },
                     error: function (data) {
                         alert('Ошибка ajax');
@@ -556,7 +536,6 @@ function initLike(parent) {
 function initAutorization(massege) {
     const wrapper = document.querySelector('.popup');
     const popup = wrapper.querySelector('.popup__inner');
-    const btn = wrapper.querySelector('.popup__close');
     wrapper.querySelector('.popup__text').textContent = massege;
 
     wrapper.classList.add('open');
@@ -684,25 +663,21 @@ function initRating() {
             }
         })
 
-        const id = rating.getAttribute('data-category-id');
-
         let url = window.location.href;
         const tailPosition = url.indexOf('?');
         const tail = tailPosition ? url.slice(tailPosition) : '/';
-        // const tail = '/?region=odeska&sort=people';
         url = `${domain}/ajax/get_products/${id}/${tail}`;
 
+        const id = rating.getAttribute('data-category-id');
         const isActiveRating = Boolean(rating.getAttribute('active-rating'));
         const isHasSort = tail.includes('sort=');
         const showPosition = (isActiveRating && isHasSort && tail !== '/') ? true : false;
-        console.log(isActiveRating, isHasSort, tail !== '/');
 
         const config = {
             containerName: '.rating__content',
             categoryID: id,
             showPosition: showPosition,
             createCard(data, wrapper, startFrom) {
-                // const arr = JSON.parse(data);
                 data.forEach((person, i) => {
                     const url = person.url;
                     const name = person.name;
@@ -889,6 +864,29 @@ function initInfoMassage(massage, type = 'info') {
     })
 }
 
+// scroll to top button
+function initScrollToTop() {
+    const btn = document.querySelector('#scrollToTop');
+    const positionY = 100
+
+    function showButton() {
+        if (document.body.scrollTop > positionY || document.documentElement.scrollTop > positionY) {
+            // btn.style.display = 'block';
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+            // setTimeout(() => { btn.style.display = 'none' }, 2000)
+        }
+    }
+
+    function scrollFunction() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', showButton);
+    btn.addEventListener('click', scrollFunction);
+}
+
 // при загрузке
 window.addEventListener('load', () => {
     isMobile = window.matchMedia(`(max-width: ${desktopBreakpoint}px)`).matches;
@@ -900,7 +898,6 @@ window.addEventListener('load', () => {
     if (isMobile) setSubmenuPosition();
     if (isApple()) html.classList.add('ios');
     initLike();
-    languageSwitcher();
     lastRating();
     news();
     initSelect();
@@ -909,6 +906,7 @@ window.addEventListener('load', () => {
     checkRatingLinks();
     initRating();
     initAlphabet();
+    initScrollToTop();
 });
 
 // при ресайзе

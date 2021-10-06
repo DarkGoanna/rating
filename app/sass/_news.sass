@@ -7,17 +7,18 @@
   &__btn
     grid-area: btn
     max-width: max-content
-    height: 24px
+    height: 40px
     display: flex
     align-items: center
     padding-left: 25px
-    padding-right: calc( 25px + 24px )
+    padding-right: calc( 10px + 40px )
     position: relative
     cursor: pointer
     border-radius: 0
     border: none
     background: $dark
     color: $light
+    min-width: 200px
     &::before,
     &::after
       content: ''
@@ -27,8 +28,8 @@
       transition: .2s
     &::before
       background: $light
-      width: 24px
-      height: 24px
+      width: 40px
+      height: 40px
       top: 0
       right: 0
       transform: translateX(5px)
@@ -40,7 +41,7 @@
       width: 6px
       height: 6px
       top: 50%
-      right: 12px
+      right: 20px
       transform: translate(30%, -50%) rotate(-45deg)
     &:hover
       &::before
@@ -179,7 +180,7 @@
 @media screen and ( max-width: 580px )
   .news
     &__inner
-      grid-template-columns: 1fr max-content 60px
+      grid-template-columns: 1fr max-content 100px
       grid-template-areas: 'title btn arrows''slider slider slider'
       align-items: center
     &__arrows
@@ -191,10 +192,17 @@
   #newsPage
     & .news__grid
       grid-template-columns: 100%
+@media screen and ( max-width: 480px )
+  .news
+    &__inner
+      grid-template-columns: 1fr 100px
+      grid-template-areas: 'title title''btn arrows''slider slider'
+      align-items: center
+    &__arrows
+      display: block
+    &__title
+      margin-bottom: 20px
 @media screen and ( max-width: 400px )
   .news
-    &__title
-      display: none
-    &__inner
-      grid-template-columns: 1fr 60px
-      grid-template-areas: 'btn arrows''slider slider'
+    &__btn
+      min-width: auto

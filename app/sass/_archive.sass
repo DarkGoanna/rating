@@ -1,7 +1,7 @@
 .archive
   &__inner
     display: grid
-    grid-template-columns: 1fr 200px
+    grid-template-columns: 1fr 240px
     grid-template-areas: 'title arrows''content content'
     column-gap: 10px
   &__title
@@ -12,14 +12,14 @@
     display: flex
     align-items: center
   &__years
-    padding: 0 24px
+    padding: 0 40px
     & .swiper-slide
       list-style: none
       text-align: center
       display: flex
       align-items: center
       justify-content: center
-      height: 24px
+      height: 40px
       cursor: pointer
       transition: .2s
       &.active
@@ -38,7 +38,7 @@
     width: 100%
     grid-area: content
     display: grid
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: repeat(4, 1fr)
     grid-gap: 80px
   &__card
     position: relative
@@ -61,7 +61,7 @@
         background: linear-gradient(359.44deg, #000000 0.47%, rgba(45, 69, 115, 0) 110.32%)
       &__label
         z-index: 2
-        width: max-content
+        width: calc(100% - 40px)
       &__image
         position: absolute
         top: 0
@@ -81,14 +81,20 @@
         margin-bottom: 8px
       &__title
         font-weight: 600
-#archive__page
-  & .archive__content
-    grid-template-columns: repeat(3, 1fr)
-    grid-gap: 30px 40px
+// #archive__page
+//   & .archive__content
+//     grid-template-columns: repeat(4, 1fr)
+//     grid-gap: 30px 40px
 @media screen and ( max-width: 1000px )
   .active-ratings
     &__slide
       max-width: 100%
+    &__content
+      grid-template-columns: 1fr 1fr
+    &__card
+      & .content
+        &__label
+          width: max-content
 
 @media screen and ( max-width: 1200px )
   .archive
@@ -100,9 +106,9 @@
     &__content
       grid-gap: 30px
 @media screen and ( max-width: 900px )
-  #archive__page
-    & .archive__content
-      grid-template-columns: repeat(2, 1fr)
+  // #archive__page
+  //   & .archive__content
+  //     grid-template-columns: repeat(2, 1fr)
 @media screen and ( max-width: 768px )
   .archive
     &__content
@@ -112,6 +118,11 @@
     &__content
       grid-gap: 20px
       grid-template-columns: 100%
-  #archive__page
-    & .archive__content
+    &__inner
       grid-template-columns: 100%
+      grid-template-areas: 'title''arrows''content'
+    &__arrows
+      margin-top: 20px
+  // #archive__page
+  //   & .archive__content
+  //     grid-template-columns: 100%
