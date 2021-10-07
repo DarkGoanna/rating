@@ -137,6 +137,7 @@
       width: 40px
       display: flex
       align-items: center
+      justify-content: center
       cursor: pointer
       transition: .2s
       & a
@@ -191,7 +192,9 @@
         visibility: visible
         transition: .2s
         border-top: 1px solid $middle
-
+    &:hover
+      & .language__btn.arrow::before
+        border-color: $dark
 //search
 .search
   position: relative
@@ -207,22 +210,10 @@
     transition: .2s
     background: #fff
     border-top: 1px solid $middle
-    &::before
-      content: ''
-      background: url(../img/search.svg)
-      background-position: center
-      background-repeat: no-repeat
-      background-size: contain
-      position: absolute
-      top: 50%
-      left: 25px
-      transform: translateY(-50%)
-      width: 20px
-      height: 20px
     & input
       display: block
       padding: 11px
-      padding-left: 60px
+      padding-right: 51px
       height: 40px
       width: 300px
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
@@ -237,6 +228,25 @@
       opacity: 1
       visibility: visible
       transition: .2s
+  & form
+    & button[type="submit"]
+      position: absolute
+      height: 100%
+      width: 40px
+      top: 0
+      right: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      cursor: pointer
+      &::before
+        content: ''
+        background: url(../img/search.svg)
+        background-position: center
+        background-repeat: no-repeat
+        background-size: contain
+        width: 20px
+        height: 20px
 
 // arrow
 .has-arrow
