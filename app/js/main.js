@@ -871,11 +871,9 @@ function initScrollToTop() {
 
     function showButton() {
         if (document.body.scrollTop > positionY || document.documentElement.scrollTop > positionY) {
-            // btn.style.display = 'block';
             btn.classList.add('show');
         } else {
             btn.classList.remove('show');
-            // setTimeout(() => { btn.style.display = 'none' }, 2000)
         }
     }
 
@@ -885,6 +883,38 @@ function initScrollToTop() {
 
     window.addEventListener('scroll', showButton);
     btn.addEventListener('click', scrollFunction);
+}
+
+// advantages
+const advantages = document.querySelector('.advantages__slider');
+if (advantages) {
+    const slides = advantages.querySelectorAll('.swiper-slide');
+    console.log(slides);
+    const texts = [];
+    const icons = [];
+    slides.forEach(slide => texts.push(slide.querySelector('.advantages__slide-title').textContent));
+    slides.forEach(slide => {
+        const img = slide.querySelector('.advantages__slide-icon');
+        const url = img.getAttribute('src');
+        const endOfHead = url.lastIndexOf('.svg');
+        const whiteIconUrl = url.slice(0, endOfHead) + '--white.svg';
+        icons.push(whiteIconUrl);
+    });
+    new Swiper(advantages, {
+        slidesPerView: 1,
+        autoHeight: true,
+        pagination: {
+            el: '.advantages .swiper-pagination',
+            clickable: true,
+            renderBullet: function (i, className) {
+                return `<div class="${className}">
+                    <img src="${icons[i]}" loading="lazy"/>
+                    <p>${texts[i]}</p>
+                </div>`;
+            },
+        },
+    });
+
 }
 
 // при загрузке
@@ -906,7 +936,7 @@ window.addEventListener('load', () => {
     checkRatingLinks();
     initRating();
     initAlphabet();
-    initScrollToTop();
+    // initScrollToTop();
 });
 
 // при ресайзе
