@@ -904,7 +904,7 @@ if (advantages) {
         slidesPerView: 1,
         autoHeight: true,
         pagination: {
-            el: '.advantages .swiper-pagination',
+            el: '.advantages__pagination',
             clickable: true,
             renderBullet: function (i, className) {
                 return `<div class="${className}">
@@ -913,9 +913,44 @@ if (advantages) {
                 </div>`;
             },
         },
+        navigation: {
+            prevEl: ".advantages__prev",
+            nextEl: ".advantages__next",
+        },
     });
 
 }
+
+// callback form
+const callback = document.querySelector('form.callback__form');
+callback.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const url = `${domain}/ajax/send_form/`
+    const target = event.target;
+    const name = target[0];
+    const phone = target[1];
+    const data = {
+        name: name.value,
+        tel: phone.value
+    }
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        // .then(result => { initInfoMassage(result.massage) })
+        .then(result => { initInfoMassage('Заявка отправлена') })
+        .catch(error => { initInfoMassage(error.massage, 'error') })
+        .finally(() => {
+            name.value = '';
+            phone.value = '';
+        })
+})
 
 // при загрузке
 window.addEventListener('load', () => {

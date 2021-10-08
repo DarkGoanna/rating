@@ -1,1 +1,196 @@
 .about
+  &__inner
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-column-gap: 70px
+  &__image
+    order: 1
+    & img
+      width: 100%
+      object-fit: cover
+.advantages
+  &__inner
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-column-gap: 70px
+    min-height: 272px
+  &__image
+    margin-bottom: -70px
+    position: relative
+    z-index: 2
+    margin-left: 15px
+    & img
+      width: 100%
+      object-fit: cover
+  &__slider
+    width: 100%
+  &__arrows
+    position: absolute
+    left: 0
+    bottom: 20px
+    height: 40px
+    width: 80px
+  &__slide
+    &-icon
+      width: 60px
+      height: 60px
+      margin-bottom: 12px
+    &-title
+      font-weight: 600
+      margin-bottom: 8px
+    &-title,
+    &-text
+      max-width: 400px
+    &-text
+      max-height: 110px
+      overflow-y: scroll
+      &::-webkit-scrollbar
+        width: 3px
+        background: #fff
+      &::-webkit-scrollbar-track
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0)
+
+      &::-webkit-scrollbar-thumb
+        background: $dark
+  &__prev,
+  &__next
+    top: 0
+    transform: none
+    margin: 0
+    background: transparent
+    &::after
+      width: 100%
+      height: 100%
+      border: none
+      background-image: url('../img/arrow--dark.svg')
+      background-repeat: no-repeat
+      background-position: center
+      transform: none
+      top: 0
+      left: 0
+  &__prev
+    left: 0
+    &::after
+      transform: rotate(180deg)
+  &__next
+    left: 40px
+    right: auto
+  &__footer
+    background: $active
+    min-height: 180px
+    color: #fff
+    position: relative
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-column-gap: 70px
+    padding: 20px 0
+  &__pagination.swiper-pagination
+    grid-column: 2/-1
+    position: relative
+    display: grid
+    grid-template-columns: max-content max-content
+    grid-gap: 12px 24px
+    bottom: auto
+    & .swiper-pagination-bullet
+      max-width: 250px
+      width: 100%
+      height: 100%
+      background: transparent
+      transition: .2s
+      opacity: 1
+      display: flex
+      align-items: center
+      text-align: left
+      column-gap: 12px
+      box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), -2px -4px 4px rgba(92, 180, 244, 0.25)
+      border-radius: 0
+      padding: 12px 24px
+      margin: 0
+      &-active
+        box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25), inset -2px -4px 4px rgba(92, 180, 244, 0.25)
+        transition: .2s
+@media screen and ( max-width: 1200px )
+  .about
+    &__inner
+      grid-template-columns: .6fr .4fr
+      grid-column-gap: 30px
+  .advantages
+    &__inner
+      grid-template-columns: .4fr .6fr
+      grid-column-gap: 30px
+      padding: 30px 0
+    &__slider
+      padding-bottom: 40px
+    &__footer
+      grid-template-columns: 100%
+      grid-column-gap: 30px
+    &__pagination.swiper-pagination
+      grid-column: auto
+      justify-content: center
+    &__arrows
+      bottom: 0
+    &__image
+      margin: 0
+
+@media screen and ( max-width: 1000px )
+  .about
+    &__inner
+      display: block
+    &__image
+      float: right
+      margin-left: 15px
+      margin-bottom: 15px
+      max-width: 300px
+@media screen and ( max-width: 768px )
+  .advantages
+    &__inner
+      grid-template-columns: 100%
+    &__slider
+      grid-column: auto
+      padding-bottom: 0
+    &__image
+      display: none
+    &__slide
+      &-title,
+      &-text
+        max-width: 100%
+    &__pagination.swiper-pagination
+      grid-template-columns: 1fr 1fr
+      padding: 12px 24px
+      & .swiper-pagination-bullet
+        max-width: 100%
+        width: 100%
+
+@media screen and ( max-width: 580px )
+  .about
+    &__image
+      float: none
+      max-width: 100%
+      margin-left: 0
+      display: block
+  .advantages
+    &__pagination.swiper-pagination
+      grid-template-columns: repeat(4, 1fr)
+      grid-column-gap: 8px
+      & .swiper-pagination-bullet
+        justify-content: center
+        height: 52px
+        padding: 10px
+        & p
+          display: none
+        & img
+          width: 100%
+          height: 100%
+    &__footer
+      padding: 30px 0
+      min-height: auto
+    &__slide
+      &-text
+        max-height: max-content
+        overflow-y: auto
+    &__inner
+      padding: 30px 0
+    &__arrows
+      position: relative
+      bottom: 0
+      margin-top: 12px

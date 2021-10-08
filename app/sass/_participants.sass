@@ -38,6 +38,17 @@
       &__content
         grid-template-columns: repeat(2, 1fr)
 
+@media screen and ( min-width: 580px )
+  #participants
+    & .experts
+      &__reset
+        &-wrapper
+          &.decor-line
+            margin-top: 0
+            padding-top: 0
+            &::before,
+            &::after
+              content: none
 @media screen and ( max-width: 580px )
   #participants
     & .experts
@@ -50,3 +61,10 @@
         margin-bottom: 20px
       &__reset
         margin-left: auto
+      &__alphabet
+        &.decor-line
+          margin-top: 30px
+          padding-top: 0
+          &::before,
+          &::after
+            content: none
