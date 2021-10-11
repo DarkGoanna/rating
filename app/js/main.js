@@ -186,31 +186,33 @@ const lastRating = SliderOnMobile('.last-rating__slider', '.last-rating__prev', 
 const news = SliderOnMobile('.news__slider', '.news__prev', '.news__next');
 
 // btn "read more" in section seo
-const seo = document.querySelector(".seo");
-if (seo) {
-    const less = currentLanguage === 'ru' ? 'Свернуть' : 'Згорнути';
-    const more = currentLanguage === 'ru' ? 'Подробнее' : 'Детальніше';
-    const e = document.querySelector(".seo__text");
-    const minHeight = Number.parseInt(e.style.getPropertyValue('--height'));
+function initSeo() {
+    const seo = document.querySelector(".seo");
+    if (seo) {
+        const less = currentLanguage === 'ru' ? 'Свернуть' : 'Згорнути';
+        const more = currentLanguage === 'ru' ? 'Подробнее' : 'Детальніше';
+        const e = document.querySelector(".seo__text");
+        const minHeight = Number.parseInt(e.style.getPropertyValue('--height'));
 
-    if (e.scrollHeight > minHeight) {
-        e.parentElement.insertAdjacentHTML("beforeend", '<button type="button" class="seo__btn btn btn--v3"></button>');
-        const t = document.querySelector(".seo__btn");
+        if (e.scrollHeight > minHeight) {
+            e.parentElement.insertAdjacentHTML("beforeend", '<button type="button" class="seo__btn btn btn--v3"></button>');
+            const t = document.querySelector(".seo__btn");
 
-        e.classList.add("less");
-        t.textContent = more;
+            e.classList.add("less");
+            t.textContent = more;
 
-        t.addEventListener("click", () => {
-            const defaultHeight = document.querySelector(".seo__text").scrollHeight;
-            e.classList.toggle("less");
-            if (e.classList.contains('less')) {
-                t.textContent = more;
-                e.style.maxHeight = `${minHeight}px`;
-            } else {
-                t.textContent = less;
-                e.style.maxHeight = `${defaultHeight}px`;
-            }
-        });
+            t.addEventListener("click", () => {
+                const defaultHeight = document.querySelector(".seo__text").scrollHeight;
+                e.classList.toggle("less");
+                if (e.classList.contains('less')) {
+                    t.textContent = more;
+                    e.style.maxHeight = `${minHeight}px`;
+                } else {
+                    t.textContent = less;
+                    e.style.maxHeight = `${defaultHeight}px`;
+                }
+            });
+        }
     }
 }
 
@@ -663,12 +665,12 @@ function initRating() {
             }
         })
 
+        const id = rating.getAttribute('data-category-id');
         let url = window.location.href;
         const tailPosition = url.indexOf('?');
         const tail = tailPosition ? url.slice(tailPosition) : '/';
         url = `${domain}/ajax/get_products/${id}/${tail}`;
 
-        const id = rating.getAttribute('data-category-id');
         const isActiveRating = Boolean(rating.getAttribute('active-rating'));
         const isHasSort = tail.includes('sort=');
         const showPosition = (isActiveRating && isHasSort && tail !== '/') ? true : false;
@@ -796,7 +798,8 @@ function initAlphabet() {
             li.setAttribute('data-leter', leter);
             alphabet.append(li)
         })
-        participants.querySelector('.experts__alphabet').prepend(alphabet);
+        const alphabetWrapper = participants.querySelector('.experts__alphabet');
+        if (alphabetWrapper) alphabetWrapper.prepend(alphabet);
 
         // при загрузке страницы - сервер выводит людей по всем буквам, активирум только ленивую дозагрузку
         const language = (currentLanguage === 'ru') ? '' : `?lang=${currentLanguage}`;
@@ -889,7 +892,6 @@ function initScrollToTop() {
 const advantages = document.querySelector('.advantages__slider');
 if (advantages) {
     const slides = advantages.querySelectorAll('.swiper-slide');
-    console.log(slides);
     const texts = [];
     const icons = [];
     slides.forEach(slide => texts.push(slide.querySelector('.advantages__slide-title').textContent));
@@ -922,35 +924,37 @@ if (advantages) {
 }
 
 // callback form
-const callback = document.querySelector('form.callback__form');
-callback.addEventListener('submit', event => {
-    event.preventDefault();
+const callback = document.querySelector('.callback__form');
+if (callback) {
+    const btn = callback.querySelector('.callback__btn');
+    btn.addEventListener('click', event => {
+        event.preventDefault();
 
-    const url = `${domain}/ajax/send_form/`
-    const target = event.target;
-    const name = target[0];
-    const phone = target[1];
-    const data = {
-        name: name.value,
-        tel: phone.value
-    }
+        // form data
+        const name = callback.querySelector('input[name="name"]');
+        const phone = callback.querySelector('input[name="phone"]');
+        const data = {
+            name: name.value,
+            tel: phone.value
+        }
 
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(data)
+        // for send to server
+        const url = `${domain}/ajax/send_form/`;
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: function (msg) {
+                name.value = '';
+                phone.value = '';
+                initInfoMassage('Заявка отправлена');
+            },
+            error: function (msg) {
+                initInfoMassage(error.massage, 'error');
+            }
+        });
     })
-        .then(response => response.json())
-        // .then(result => { initInfoMassage(result.massage) })
-        .then(result => { initInfoMassage('Заявка отправлена') })
-        .catch(error => { initInfoMassage(error.massage, 'error') })
-        .finally(() => {
-            name.value = '';
-            phone.value = '';
-        })
-})
+}
 
 // при загрузке
 window.addEventListener('load', () => {
@@ -971,7 +975,8 @@ window.addEventListener('load', () => {
     checkRatingLinks();
     initRating();
     initAlphabet();
-    // initScrollToTop();
+    initScrollToTop();
+    initSeo();
 });
 
 // при ресайзе

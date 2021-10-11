@@ -24,10 +24,28 @@
   transform: translateY(25px)
   color: #fff
   border-radius: 10px
+  &__text
+    position: relative
+    padding-left: 30px
+    &::before
+      content: ''
+      width: 20px
+      height: 20px
+      position: absolute
+      top: 50%
+      left: 0
+      transform: translateY(-50%)
+      background-repeat: no-repeat
+      background-size: contain
+      background-position: center
   &.error
-    background: tomato
+    background: $error
+    & .info-alert__text::before
+      background-image: url(../img/error-popup.svg)
   &.info
-    background: $active
+    background: $dark
+    & .info-alert__text::before
+      background-image: url(../img/info-popup.svg)
   &.open
     transition: .3s
     opacity: 1

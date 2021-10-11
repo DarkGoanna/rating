@@ -1,0 +1,52 @@
+.not-found
+  &__inner
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    padding: 80px auto
+    &.decor-line
+      padding-top: 80px
+  & img
+    object-fit: cover
+  &-image-center
+    max-width: 500px
+    display: block
+    margin: 0 auto 80px
+  &__image-wrapper
+    position: relative
+    min-height: 100px
+    & img
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+  &__description
+    display: grid
+    justify-content: center
+    height: max-content
+    max-width: 500px
+    margin: 80px auto 30px
+    & > p
+      margin-bottom: 30px
+  &__btn
+    margin: auto
+@media screen and ( max-width: 1000px )
+  .not-found
+    &-image-center
+      max-width: 400px
+
+@media screen and ( max-width: 768px )
+  .not-found
+    &-image-center
+      margin-bottom: 40px
+      max-width: 250px
+    &__image-wrapper
+      width: 100%
+      overflow: hidden
+      & img
+        width: 150%
+@media screen and ( max-width: 580px )
+  .not-found
+    &__description
+      margin-top: 30px
